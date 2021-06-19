@@ -16,44 +16,82 @@ public class DocList {
     private Document pLast;
     private int size;
 
+    /**
+     * Constructor
+     */
     public DocList() {
         this.pFirst = this.pLast = null;
         this.size = 0;
     }
     
+    /**
+     * Destructor
+     */
     public void destructor(){
         this.pFirst = this.pLast = null;
         this.size = 0;
     }
 
+    /**
+     * Getter del atributo pFirst
+     * @return pFirst (primer nodo de la lista)
+     */
     public Document getpFirst() {
         return pFirst;
     }
 
+    /**
+     * Setter del atributo pFirst
+     * @param pFirst nuevo primer nodo de la lista
+     */
     public void setpFirst(Document pFirst) {
         this.pFirst = pFirst;
     }
 
+    /**
+     * Getter del atributo pLast
+     * @return pLast (último nodo de la lista)
+     */
     public Document getpLast() {
         return pLast;
     }
 
+    /**
+     * Setter del atributo pLast
+     * @param pLast nuevo último nodo de la lista
+     */
     public void setpLast(Document pLast) {
         this.pLast = pLast;
     }
 
+    /**
+     * Getter del atributo size
+     * @return size (el tamaño de la lista)
+     */
     public int getSize() {
         return size;
     }
 
+    /**
+     * Setter del atributo size
+     * @param size el nuevo tamaño de la lista
+     */
     public void setSize(int size) {
         this.size = size;
     }
     
+    /**
+     * Método que determina si la lista está o no vacía
+     * @return true si está vacía, false si no
+     */
     public boolean isEmpty(){
         return (this.pFirst == null);
     }    
     
+    /**
+     * Método para insertar un nuevo documento al final de la lista
+     * @param newDoc nuevo documento que se insertará
+     */
     public void insertAtEnd(Document newDoc){
         if (this.isEmpty()){
             pFirst = pLast = newDoc;
@@ -64,6 +102,10 @@ public class DocList {
         size++;
     }
     
+    /**
+     * Método para eliminar un documento a partir de su nombre
+     * @param name nombre del documento para eliminar
+     */
     public void deleteDoc(String name){
         int position = this.getDocIndex(name);
         if (position == -1){
@@ -74,6 +116,11 @@ public class DocList {
         }
     }
     
+    /**
+     * Método para obtener el índice de un documento en la lista a partir de su nombre
+     * @param name nombre del documento cuyo índice en la lista se busca
+     * @return el índice del documento cuyo nombre se pasa por parámetro (es decir, su posición en la lista, desde el 0 hasta el tamaño de la lista menos 1) o -1 si no se consigue el documento
+     */
     public int getDocIndex(String name){
         Document pAux = pFirst;
         for (int i = 0; i < size; i++) {
@@ -85,6 +132,10 @@ public class DocList {
         return -1;
     }
     
+    /**
+     * Método para eliminar un nodo en una determinada posición
+     * @param position entero que representa el índice del nodo a eliminar (del 0 al tamaño de la lista menos 1) 
+     */
     public void deleteAtPosition(int position){
         if (position >= 0 && position<size){
             if (position == 0){
@@ -101,6 +152,9 @@ public class DocList {
         }
     }
     
+    /**
+     * Método para eliminar el primer elemento de la lista
+     */
     public void deleteFirstElement(){
         if (!this.isEmpty()){
             if (this.size >1){
@@ -112,6 +166,9 @@ public class DocList {
         }
     }
     
+    /**
+     * Método para eliminar el último elemento de la lista
+     */
     public void deleteLastElement(){
         if (!this.isEmpty()){
             if (this.size >1){
@@ -124,10 +181,20 @@ public class DocList {
         }
     }
     
+    /**
+     * Método que determina si un documento está en la lista a partir de su nombre
+     * @param name nombre del documento del cual se busca saber si está en la lista
+     * @return true si está en la lista, false si no
+     */
     public boolean isInList(String name){
         return this.getDocIndex(name) !=-1;
     }
     
+    /**
+     * Método que devuelve un nodo de documento a partir de su posición/índice en la lista
+     * @param position entero que representa el índice del nodo a buscar (del 0 al tamaño de la lista menos 1) 
+     * @return el nodo en la posición buscada de la lista o null si la posición dada es inválida
+     */
     public Document getNodeAtIndex(int position){        
         if (position >= 0 && position<size){
             Document pAux = pFirst; 
@@ -139,6 +206,11 @@ public class DocList {
         return null;        
     }
     
+     /**
+     * Método que devuelve un nodo de la lista a partir de su nombre
+     * @param name nombre del documento cuyo nodo se busca
+     * @return el nodo cuyo atributo name es el pasado por parámetro o null si no se encuentra en la lista
+     */
     public Document getNode(String name){
         if (!this.isEmpty()){
             Document pAux = this.pFirst;
@@ -152,6 +224,10 @@ public class DocList {
         return null;
     }
     
+    /**
+     * Método para obtener la información de los atributos de todos los documentos en la lista
+     * @return un string que contiene todos los atributos de cada documento de la lista
+     */
     public String showDocs(){
         String docs = "";
         if (!this.isEmpty()){
