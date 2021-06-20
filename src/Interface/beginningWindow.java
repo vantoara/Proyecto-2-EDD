@@ -9,7 +9,8 @@ import proyecto.pkg2.csvFile;
 import proyecto.pkg2.UserList;
 import javax.swing.JFileChooser;
 import java.io.File; 
-
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.*;
 
 /**
  * Clase asociada con la ventana inicial del programa
@@ -47,6 +48,8 @@ public class beginningWindow extends javax.swing.JFrame {
         bChoose = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+
+        jFileChooser1.setDialogTitle("Escoge un archivo con los usuarios registrados");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -121,6 +124,9 @@ public class beginningWindow extends javax.swing.JFrame {
 
     private void bChooseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bChooseActionPerformed
         JFileChooser jf = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos .csv", "csv");
+        jf.addChoosableFileFilter(filter);
+        jf.setAcceptAllFileFilterUsed(false);
         jf.showOpenDialog(this);
         File file = jf.getSelectedFile();
         if (file != null){

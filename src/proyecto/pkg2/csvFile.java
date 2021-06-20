@@ -28,9 +28,7 @@ public class csvFile {
         String line;
         File file = new File(path);
         try{
-            if (!file.exists()) {
-                file.createNewFile();
-            }
+
             FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
             while ((line = br.readLine()) != null) {
