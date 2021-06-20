@@ -17,9 +17,9 @@ public class User {
     private User pNext;
     private DocList docs;
 
-    public User(String username) {
+    public User(String username, String type) {
         this.name = username;
-        this.type = null;
+        this.type = type;
         this.pNext = null;
         this.docs = new DocList();
     }
