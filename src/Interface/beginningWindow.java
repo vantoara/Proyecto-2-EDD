@@ -10,7 +10,6 @@ import proyecto.pkg2.UserList;
 import javax.swing.JFileChooser;
 import java.io.File; 
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.*;
 
 /**
  * Clase asociada con la ventana inicial del programa
@@ -52,7 +51,6 @@ public class beginningWindow extends javax.swing.JFrame {
         jFileChooser1.setDialogTitle("Escoge un archivo con los usuarios registrados");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -136,14 +134,8 @@ public class beginningWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_bChooseActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (this.path != null){
-            proyecto.pkg2.UserList users = csvFile.readCSV(path);
-            if (users != null){
-                //TODO aquí le paso a la siguiente ventana users si es que se creó
-            }else{
-                //o nada y la siguiente ventana comienza con un users vacío
-            }
-        }
+        proyecto.pkg2.UserList users = csvFile.readCSV(path);
+        menuWindow mW = new menuWindow(users, path);        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
