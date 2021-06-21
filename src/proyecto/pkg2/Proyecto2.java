@@ -23,12 +23,23 @@ public class Proyecto2 {
         test.insert(10);
         test.insert(20);
         test.insert(2);
-
+        test.insert(4);
+        test.insert(69);
+        
         test.preorder(test.getMin());
         
-        System.out.println("test");
-        TestNode node = test.getMin();
-        System.out.println(node.getRightChild().getRightChild().getData());
+        test.deleteMin();
+        System.out.println("\n");
+        test.preorder(test.getMin());
+        
+        test.deletion(3);
+        System.out.println("\n");
+        test.preorder(test.getMin());
+
+        test.deleteMin();
+        System.out.println("\n");
+        test.preorder(test.getMin());
+        
     }
     
 }
