@@ -40,39 +40,43 @@ public class csvFile {
                 if (!"".equals(text)) {
                     String[] nodes = text.split("\n");
                     for (String node : nodes){
-                        String [] nodoInfo = node.split(", ");
-                        User user = new User(nodoInfo[0], nodoInfo[1]);
-                        users.insertAtEnd(user);
+                        String [] nodoInfo = node.split(",");
+                        if (nodoInfo[1].contains("prioridad_alta") || nodoInfo[1].contains("prioridad_media") || nodoInfo[1].contains("prioridad_baja")){
+                            users.insertAtEnd(nodoInfo[0], nodoInfo[1].trim());
+                        }else{
+                            throw new Exception();
+                        }
                     }
                 }
                 br.close();
                 JOptionPane.showMessageDialog(null, "Archivo cargado exitosamente.");
                 return users;
             }catch (Exception e){
-                JOptionPane.showMessageDialog(null, "Error al leer en archivo de csv. Se procederá sin usuarios registrados.");
+                JOptionPane.showMessageDialog(null, "Error al leer el archivo de csv. Se procederá sin usuarios registrados.", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
         }
         return null;
     }    
 
-        public static void writeCSV(String path, UserList users){
-            if (!users.isEmpty()){
-                try{
-                    String text = "usuario, tipo\n";
-                    User pAux = users.getpFirst();
-                    while (pAux != null) {
-                        text += pAux.getName();
-                        text += ", "+pAux.getType();
-                        text += "\n";
-                        pAux = pAux.getpNext();
-                    }
-                    PrintWriter pw = new PrintWriter(path);
-                    pw.print(text);
-                    pw.close();
+    public static void writeCSV(String path, UserList users){
 
-                }catch (Exception e){
-                    JOptionPane.showMessageDialog(null, "Error al guardar en el archivo de csv. Los cambios no serán guardados."); 
+        try{
+            String text = "usuario, tipo\n";
+            if (!users.isEmpty()){
+                User pAux = users.getpFirst();
+                while (pAux != null) {
+                    text += pAux.getName();
+                    text += ", "+pAux.getType();
+                    text += "\n";
+                    pAux = pAux.getpNext();
                 }
             }
+            PrintWriter pw = new PrintWriter(path);
+            pw.print(text);
+            pw.close();
+
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Error al guardar en el archivo de csv. Los cambios no serán guardados.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }
+}

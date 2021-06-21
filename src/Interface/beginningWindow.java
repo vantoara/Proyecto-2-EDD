@@ -45,7 +45,7 @@ public class beginningWindow extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         pathTxt = new javax.swing.JTextField();
         bChoose = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        bBegin = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
         jFileChooser1.setDialogTitle("Escoge un archivo con los usuarios registrados");
@@ -88,6 +88,7 @@ public class beginningWindow extends javax.swing.JFrame {
 
         bChoose.setBackground(new java.awt.Color(255, 227, 238));
         bChoose.setText("Abrir");
+        bChoose.setToolTipText("Haz click aquí para escoger el archivo que deseas cargar");
         bChoose.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 255), 2, true));
         bChoose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,15 +99,16 @@ public class beginningWindow extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 380, 70));
 
-        jButton1.setBackground(new java.awt.Color(204, 255, 255));
-        jButton1.setText("INICIAR");
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        bBegin.setBackground(new java.awt.Color(204, 255, 255));
+        bBegin.setText("INICIAR");
+        bBegin.setToolTipText("Haz click aquí cuando estés listo para iniciar la simulación");
+        bBegin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
+        bBegin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                bBeginActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 100, 30));
+        jPanel1.add(bBegin, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 100, 30));
 
         jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\lilin\\Documents\\UNIMET\\6\\Estructuras de Datos\\PROYECTOS\\p2\\hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg")); // NOI18N
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 250));
@@ -133,10 +135,14 @@ public class beginningWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_bChooseActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void bBeginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBeginActionPerformed
         proyecto.pkg2.UserList users = csvFile.readCSV(path);
-        menuWindow mW = new menuWindow(users, path);        
-    }//GEN-LAST:event_jButton1ActionPerformed
+        if (users == null){
+            this.path = null;
+        }
+        menuWindow mW = new menuWindow(users, path);
+        this.dispose();
+    }//GEN-LAST:event_bBeginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,8 +180,8 @@ public class beginningWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bBegin;
     private javax.swing.JButton bChoose;
-    private javax.swing.JButton jButton1;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

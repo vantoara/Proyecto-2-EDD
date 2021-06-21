@@ -5,6 +5,12 @@
  */
 
 package Interface;
+import java.awt.Dimension;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import proyecto.pkg2.csvFile;
+import proyecto.pkg2.User;
 
 /**
  * Clase relacionada a la ventana con el menú de opciones 
@@ -14,6 +20,7 @@ public class menuWindow extends javax.swing.JFrame {
 
     public static String path;
     public static proyecto.pkg2.UserList users;
+    proyecto.pkg2.User currentUser;
     
     /** Creates new form menuWindow */
     public menuWindow(proyecto.pkg2.UserList users, String path) {
@@ -24,11 +31,16 @@ public class menuWindow extends javax.swing.JFrame {
         }else{
             this.users = users;
         }
+        this.currentUser = null;
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         priorityChoice.add("prioridad_baja");
         priorityChoice.add("prioridad_media");
         priorityChoice.add("prioridad_alta");
+        //AAAAAAAAAAAAAAAAAAAAAAAAAA IDK SI ESTO ES LO DEL TIPO xd ALSO ES SUFICIENTE?
+        docTypeChoice.add("pdf");
+        docTypeChoice.add("txt");
+        docTypeChoice.add("doc");
     }
 
     /** This method is called from within the constructor to
@@ -47,11 +59,60 @@ public class menuWindow extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         priorityChoice = new java.awt.Choice();
         jSeparator2 = new javax.swing.JSeparator();
-        jLabel4 = new javax.swing.JLabel();
+        bAddUser = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        deleteUserNameTxt = new javax.swing.JTextField();
+        bDeleteUser = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jSeparator4 = new javax.swing.JSeparator();
+        bSeeUsers = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jSeparator5 = new javax.swing.JSeparator();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jPanel4 = new javax.swing.JPanel();
+        jSeparator3 = new javax.swing.JSeparator();
+        jLabel13 = new javax.swing.JLabel();
+        jSeparator6 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
+        userTxt = new javax.swing.JTextField();
+        bLogIn = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        newDocNameTxt = new javax.swing.JTextField();
+        sSize = new javax.swing.JSpinner();
+        jLabel14 = new javax.swing.JLabel();
+        docTypeChoice = new java.awt.Choice();
+        jLabel4 = new javax.swing.JLabel();
+        bNewDoc = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
+        jSeparator7 = new javax.swing.JSeparator();
+        delQueueNameTxt = new javax.swing.JTextField();
+        bDelDoc = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        delDocNameTxt = new javax.swing.JTextField();
+        bDelQueue = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
+        jSeparator8 = new javax.swing.JSeparator();
+        sendToQueueTxt = new javax.swing.JTextField();
+        bSendToQueue = new javax.swing.JButton();
+        jLabel18 = new javax.swing.JLabel();
+        jSeparator9 = new javax.swing.JSeparator();
+        bPrint = new javax.swing.JButton();
+        jLabel19 = new javax.swing.JLabel();
+        jSeparator10 = new javax.swing.JSeparator();
+        bGraphic = new javax.swing.JButton();
+        bSeq = new javax.swing.JButton();
+        jSeparator11 = new javax.swing.JSeparator();
+        jSeparator12 = new javax.swing.JSeparator();
+        jSeparator13 = new javax.swing.JSeparator();
+        currentUserLabel = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        bExit = new javax.swing.JButton();
+        background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(204, 255, 255));
@@ -73,30 +134,370 @@ public class menuWindow extends javax.swing.JFrame {
         newNameTxt.setToolTipText("Ingresa aquí un nombre para el nuevo usuario");
         jPanel2.add(newNameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 200, -1));
 
-        jLabel2.setText("AGREGAR NUEVO USUARIO");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 200, 40));
+        jLabel2.setText("VER USUARIOS REGISTRADOS");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 200, 40));
         jPanel2.add(priorityChoice, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 200, -1));
-        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 200, 10));
+        jPanel2.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, 200, 10));
 
-        jLabel4.setText("Tipo de prioridad:");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 130, 40));
+        bAddUser.setBackground(new java.awt.Color(255, 227, 238));
+        bAddUser.setText("Agregar");
+        bAddUser.setToolTipText("Haz click aquí cuando estés listo para agregar un nuevo usuario");
+        bAddUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
+        bAddUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAddUserActionPerformed(evt);
+            }
+        });
+        jPanel2.add(bAddUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 80, 20));
+
+        jLabel7.setText("Nombre de usuario:");
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 120, 40));
+
+        deleteUserNameTxt.setText("Ingresa el nombre del usuario a eliminar");
+        deleteUserNameTxt.setToolTipText("Ingresa aquí el nombre del usuario a eliminar");
+        jPanel2.add(deleteUserNameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 200, -1));
+
+        bDeleteUser.setBackground(new java.awt.Color(255, 227, 238));
+        bDeleteUser.setText("Eliminar");
+        bDeleteUser.setToolTipText("Haz click aquí cuando estés listo para eliminar un usuario");
+        bDeleteUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
+        bDeleteUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bDeleteUserActionPerformed(evt);
+            }
+        });
+        jPanel2.add(bDeleteUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 80, 20));
+
+        jLabel8.setText("ELIMINAR UN USUARIO");
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 200, 40));
+        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 200, 10));
+
+        bSeeUsers.setBackground(new java.awt.Color(255, 227, 238));
+        bSeeUsers.setText("Ver usuarios y sus documentos");
+        bSeeUsers.setToolTipText("Haz click para ver todos los usuarios registrados y sus documentos");
+        bSeeUsers.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
+        bSeeUsers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bSeeUsersActionPerformed(evt);
+            }
+        });
+        jPanel2.add(bSeeUsers, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 200, 20));
+
+        jLabel9.setText("AGREGAR NUEVO USUARIO");
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 200, 40));
+        jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 200, 10));
+
+        jLabel10.setText("Nombre de usuario:");
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 130, 40));
+
+        jLabel11.setText("Tipo de prioridad:");
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 130, 40));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 240, 350));
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "DOCUMENTOS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel4.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 680, 290, 10));
+
+        jLabel13.setText("INICIAR SESIÓN");
+        jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 200, 40));
+        jPanel4.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 770, 290, 10));
 
         jLabel5.setText("Nombre de usuario:");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 130, 40));
+        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 130, 40));
 
-        jButton1.setBackground(new java.awt.Color(255, 227, 238));
-        jButton1.setText("Agregar");
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 80, 20));
+        userTxt.setText("Ingresa tu nombre de usuario");
+        jPanel4.add(userTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 200, -1));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 240, 330));
+        bLogIn.setBackground(new java.awt.Color(204, 255, 255));
+        bLogIn.setText("Iniciar sesión");
+        bLogIn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
+        bLogIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bLogInActionPerformed(evt);
+            }
+        });
+        jPanel4.add(bLogIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, 80, 20));
+
+        jLabel6.setText("VER COLA DE IMPRESIÓN");
+        jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 650, 290, 40));
+
+        jLabel12.setText("Nombre del documento:");
+        jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 130, 40));
+
+        newDocNameTxt.setText("Ingresa el nombre del documento");
+        jPanel4.add(newDocNameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 290, -1));
+
+        sSize.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+        jPanel4.add(sSize, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 90, 20));
+
+        jLabel14.setText("Tamaño (bytes):");
+        jPanel4.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 190, 100, 40));
+        jPanel4.add(docTypeChoice, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 90, 20));
+
+        jLabel4.setText("Tipo:");
+        jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 100, 40));
+
+        bNewDoc.setBackground(new java.awt.Color(255, 227, 238));
+        bNewDoc.setText("Crear");
+        bNewDoc.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
+        bNewDoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bNewDocActionPerformed(evt);
+            }
+        });
+        jPanel4.add(bNewDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, 80, 20));
+
+        jLabel15.setText("CREAR UN NUEVO DOCUMENTO");
+        jPanel4.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 200, 40));
+        jPanel4.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 290, 10));
+
+        delQueueNameTxt.setText("Ingresa el nombre del documento a eliminar");
+        delQueueNameTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delQueueNameTxtActionPerformed(evt);
+            }
+        });
+        jPanel4.add(delQueueNameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 400, 290, -1));
+
+        bDelDoc.setBackground(new java.awt.Color(255, 227, 238));
+        bDelDoc.setText("Eliminar");
+        bDelDoc.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
+        bDelDoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bDelDocActionPerformed(evt);
+            }
+        });
+        jPanel4.add(bDelDoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 340, 90, 20));
+
+        jLabel1.setText("Eliminar un documento de la cola:");
+        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, 290, 30));
+
+        jLabel16.setText("Eliminar un documento que no está en la cola:");
+        jPanel4.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 290, 30));
+
+        delDocNameTxt.setText("Ingresa el nombre del documento a eliminar");
+        delDocNameTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delDocNameTxtActionPerformed(evt);
+            }
+        });
+        jPanel4.add(delDocNameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 290, -1));
+
+        bDelQueue.setBackground(new java.awt.Color(255, 227, 238));
+        bDelQueue.setText("Eliminar");
+        bDelQueue.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
+        bDelQueue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bDelQueueActionPerformed(evt);
+            }
+        });
+        jPanel4.add(bDelQueue, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 430, 90, 20));
+
+        jLabel17.setText("ELIMINAR UN DOCUMENTO");
+        jPanel4.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 290, 40));
+        jPanel4.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 290, 10));
+
+        sendToQueueTxt.setText("Ingresa el nombre del documento a imprimir");
+        sendToQueueTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendToQueueTxtActionPerformed(evt);
+            }
+        });
+        jPanel4.add(sendToQueueTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 510, 290, -1));
+
+        bSendToQueue.setBackground(new java.awt.Color(255, 227, 238));
+        bSendToQueue.setText("Enviar a imprimir");
+        bSendToQueue.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
+        bSendToQueue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bSendToQueueActionPerformed(evt);
+            }
+        });
+        jPanel4.add(bSendToQueue, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 540, 110, 20));
+
+        jLabel18.setText("ENVIAR DOCUMENTO A COLA DE IMPRESIÓN");
+        jPanel4.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 470, 290, 40));
+        jPanel4.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 500, 290, 10));
+
+        bPrint.setBackground(new java.awt.Color(255, 227, 238));
+        bPrint.setText("Imprimir primer documento en la cola");
+        bPrint.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
+        jPanel4.add(bPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 610, 250, 30));
+
+        jLabel19.setText("LIBERAR IMPRESORA");
+        jPanel4.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 570, 290, 40));
+        jPanel4.add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 600, 290, 10));
+
+        bGraphic.setBackground(new java.awt.Color(255, 227, 238));
+        bGraphic.setText("Ver cola gráficamente");
+        bGraphic.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
+        jPanel4.add(bGraphic, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 730, 210, 30));
+
+        bSeq.setBackground(new java.awt.Color(255, 227, 238));
+        bSeq.setText("Ver como secuencia de registros");
+        bSeq.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
+        jPanel4.add(bSeq, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 690, 210, 30));
+        jPanel4.add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 290, 10));
+        jPanel4.add(jSeparator12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 290, 10));
+        jPanel4.add(jSeparator13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 290, 10));
+
+        jScrollPane1.setViewportView(jPanel4);
+
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 330, 300));
+
+        currentUserLabel.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
+        jPanel3.add(currentUserLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 320, 40));
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, 350, 350));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 260, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\lilin\\Documents\\UNIMET\\6\\Estructuras de Datos\\PROYECTOS\\p2\\hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg")); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 410));
+        bExit.setBackground(new java.awt.Color(255, 153, 153));
+        bExit.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        bExit.setText("X");
+        bExit.setToolTipText("Salir");
+        bExit.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(255, 204, 204), new java.awt.Color(255, 102, 153)));
+        bExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bExitActionPerformed(evt);
+            }
+        });
+        getContentPane().add(bExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 0, 40, 20));
+
+        background.setIcon(new javax.swing.ImageIcon("C:\\Users\\lilin\\Documents\\UNIMET\\6\\Estructuras de Datos\\PROYECTOS\\p2\\hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg")); // NOI18N
+        getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 410));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddUserActionPerformed
+        if (newNameTxt.getText().isBlank() || newNameTxt.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Antes de agregar un nuevo usuario, debes ingresar su nombre de usuario.", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }else{
+            if (newNameTxt.getText().contains(" ") || newNameTxt.getText().contains(",") || this.users.isInList(newNameTxt.getText())){
+                JOptionPane.showMessageDialog(null, "Ingresaste un nombre de usuario inválido. Intenta otra vez", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }else{
+                this.users.insertAtEnd(newNameTxt.getText(), priorityChoice.getItem(priorityChoice.getSelectedIndex()));
+                JOptionPane.showMessageDialog(null, "Usuario agregado con éxito.");
+            }
+        }
+    }//GEN-LAST:event_bAddUserActionPerformed
+
+    private void bDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDeleteUserActionPerformed
+        if (deleteUserNameTxt.getText().isBlank() || deleteUserNameTxt.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Antes de eliminar un usuario, debes ingresar su nombre de usuario.", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }else{
+            this.users.deleteUser(deleteUserNameTxt.getText());
+        }
+    }//GEN-LAST:event_bDeleteUserActionPerformed
+
+    private void bSeeUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSeeUsersActionPerformed
+        if (!this.users.isEmpty()){
+            JTextArea text = new JTextArea(this.users.showUsers());
+            text.setLineWrap(false);
+            JScrollPane scrollPane = new JScrollPane(text);  
+            scrollPane.setPreferredSize(new Dimension(400, 400));
+            JOptionPane.showMessageDialog(null, scrollPane, "Usuarios", JOptionPane.PLAIN_MESSAGE);
+        }else{
+            JOptionPane.showMessageDialog(null, "Aún no se ha registrado ningún usuario.");
+        }
+    }//GEN-LAST:event_bSeeUsersActionPerformed
+
+    private void bExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bExitActionPerformed
+        if (path != null){
+            String[] options = {"Sí", "No", "Volver"};
+            int answer = JOptionPane.showOptionDialog(null, "¿Quieres guardar la lista de usuarios antes de salir?", "Guardar antes de salir", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+            switch(answer){
+                case 0:
+                    csvFile.writeCSV(path, users);
+                    this.dispose();
+                    break;
+                case 1:
+                    this.dispose();
+                    break;
+            }
+        }else{
+            String [] options = {"Sí", "No"};
+            int answer = JOptionPane.showOptionDialog(null, "¿Seguro que quieres salir?", "Salir", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+            if (answer == 0){
+                this.dispose();
+            }
+        }
+        
+    }//GEN-LAST:event_bExitActionPerformed
+
+    private void delQueueNameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delQueueNameTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_delQueueNameTxtActionPerformed
+
+    private void delDocNameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delDocNameTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_delDocNameTxtActionPerformed
+
+    private void sendToQueueTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendToQueueTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sendToQueueTxtActionPerformed
+
+    private void bSendToQueueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSendToQueueActionPerformed
+        // TODO 
+        //HAZ UN JOPTIONPANE SHOW OPTION OR SMTH PARA SABER SI ES PRIORITARIOOOO
+        if (this.currentUser != null){
+        
+        }else{
+            JOptionPane.showMessageDialog(null, "Antes de eliminar un documento de la cola de impresión, debes iniciar sesión.", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_bSendToQueueActionPerformed
+
+    private void bLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLogInActionPerformed
+        if (userTxt.getText().isBlank() || userTxt.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Para iniciar sesión, debes ingresar un nombre de usuario.", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }else{
+            if (this.users.isInList(userTxt.getText())){
+                if ((this.currentUser != null && !this.currentUser.getName().equals(userTxt.getText())) || this.currentUser == null){
+                    JOptionPane.showMessageDialog(null, "Sesión iniciada exitosamente.");
+                    this.currentUser = this.users.getNode(userTxt.getText());
+                    currentUserLabel.setText("Sesión actual: "+userTxt.getText());
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Ingresaste un nombre de usuario inválido. Intenta otra vez", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_bLogInActionPerformed
+
+    private void bNewDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNewDocActionPerformed
+        if (this.currentUser != null){    
+            if (newDocNameTxt.getText().isBlank() || newDocNameTxt.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "Para crear un nuevo documento, debes ingresar su nombre.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }else{
+                this.currentUser.createNewDoc(newDocNameTxt.getText(), (Integer)sSize.getValue(), docTypeChoice.getItem(docTypeChoice.getSelectedIndex()));
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Antes de crear un nuevo documento, debes iniciar sesión.", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_bNewDocActionPerformed
+
+    private void bDelDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDelDocActionPerformed
+        if (this.currentUser != null){    
+            if (delDocNameTxt.getText().isBlank() || delDocNameTxt.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "Para eliminar un documento, debes ingresar su nombre.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }else{
+                this.currentUser.getDocs().deleteDoc(delDocNameTxt.getText());
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Antes de eliminar un documento, debes iniciar sesión.", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_bDelDocActionPerformed
+
+    private void bDelQueueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDelQueueActionPerformed
+        // TODO 
+        if (this.currentUser != null){
+        
+        }else{
+            JOptionPane.showMessageDialog(null, "Antes de eliminar un documento de la cola de impresión, debes iniciar sesión.", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_bDelQueueActionPerformed
 
     /**
      * @param args the command line arguments
@@ -134,18 +535,67 @@ public class menuWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton bAddUser;
+    private javax.swing.JButton bDelDoc;
+    private javax.swing.JButton bDelQueue;
+    private javax.swing.JButton bDeleteUser;
+    private javax.swing.JButton bExit;
+    private javax.swing.JButton bGraphic;
+    private javax.swing.JButton bLogIn;
+    private javax.swing.JButton bNewDoc;
+    private javax.swing.JButton bPrint;
+    private javax.swing.JButton bSeeUsers;
+    private javax.swing.JButton bSendToQueue;
+    private javax.swing.JButton bSeq;
+    private javax.swing.JLabel background;
+    private javax.swing.JLabel currentUserLabel;
+    private javax.swing.JTextField delDocNameTxt;
+    private javax.swing.JTextField delQueueNameTxt;
+    private javax.swing.JTextField deleteUserNameTxt;
+    private java.awt.Choice docTypeChoice;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator10;
+    private javax.swing.JSeparator jSeparator11;
+    private javax.swing.JSeparator jSeparator12;
+    private javax.swing.JSeparator jSeparator13;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
+    private javax.swing.JSeparator jSeparator9;
+    private javax.swing.JTextField newDocNameTxt;
     private javax.swing.JTextField newNameTxt;
     private java.awt.Choice priorityChoice;
+    private javax.swing.JSpinner sSize;
+    private javax.swing.JTextField sendToQueueTxt;
+    private javax.swing.JTextField userTxt;
     // End of variables declaration//GEN-END:variables
 
 }

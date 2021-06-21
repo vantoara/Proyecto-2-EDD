@@ -109,10 +109,14 @@ public class DocList {
     public void deleteDoc(String name){
         int position = this.getDocIndex(name);
         if (position == -1){
-            JOptionPane.showMessageDialog(null, "El documento a eliminar no se encuentra en la lista de documentos de este usuario.");
+            JOptionPane.showMessageDialog(null, "El documento a eliminar no se encuentra en la lista de documentos de este usuario.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }else{
-            this.deleteAtPosition(position);
-            JOptionPane.showMessageDialog(null, "El documento \""+name+"\" fue eliminado exitosamente.");
+            if (this.getNode(name).isInQueue()){
+                JOptionPane.showMessageDialog(null, "Este documento está en la cola de impresión. Para eliminarlo permanentemente, debes eliminarlo de la cola de impresión y luego eliminarlo de la lista de documentos.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            }else{
+                this.deleteAtPosition(position);
+                JOptionPane.showMessageDialog(null, "El documento \""+name+"\" fue eliminado exitosamente.");
+            }
         }
     }
     
@@ -233,12 +237,12 @@ public class DocList {
         if (!this.isEmpty()){
             Document pAux = pFirst;
             for (int i = 1; i<=this.size; i++){
-                docs += "\n------"+i+"-------------------\n"+pAux.showAttributes();
+                docs += "------"+i+"-------------\n"+pAux.showAttributes()+"\n";
                 pAux = pAux.getpNext();
             }
             return docs;
         }else{
-            return "\n\tAún no se han creado documentos.\n";
+            return "\tAún no se han creado documentos.\n";
         }
     }
 }
