@@ -20,6 +20,8 @@ public class Document {
     private Document leftSon;
     private Document rightSon;
     private Document pNext;
+    private int position; // Servirá más que nada en el hashtable y la función de eliminar
+    private int value;
     
     /**
      * Constructor
@@ -33,6 +35,7 @@ public class Document {
         this.type = type;
         this.inQueue = false;
         this.father = this.leftSon = this.rightSon = this.pNext = null;
+        this.position = this.value = -1;
     }
 
     /**
@@ -186,6 +189,22 @@ public class Document {
      */
     public String showAttributes(){
         return "\tNombre: \""+this.name+"\"\n\tTamaño: "+this.size+" Bytes\n\tTipo: "+this.type+"\n\tEstado: "+((this.inQueue)? "en la cola de impresión.\n" : "listo para enviar a la cola de impresión.\n");
+    }
+    
+    public int getPosition(){
+        return position;
+    }
+    
+    public void setPosition(int pos){
+        this.position = pos;
+    }
+    
+    public int getValue(){
+        return value;
+    }
+    
+    public void setValue(int time){
+        this.value = time;
     }
     
 }

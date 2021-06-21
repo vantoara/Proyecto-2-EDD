@@ -6,8 +6,8 @@
 package proyecto.pkg2;
 
 /**
- *
- * @author vadau
+ * Nodo de prueba, por eso el javadoc está incompleto
+ * @author Ana Tovar
  */
 public class TestNode {
 

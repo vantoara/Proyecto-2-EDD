@@ -5,13 +5,15 @@
  */
 package proyecto.pkg2;
 
+import javax.swing.JOptionPane;
+
 /**
- * Clase asociada al montículo binario
+ * Clase asociada al montículo binario. Javadoc incompleto porque está hecho con nodos de prueba
  * @author Ana Tovar
  */
 public class BinaryHeap {
     
-    private TestNode root;
+    private Document root;
     private int size;
     
     /**
@@ -24,11 +26,19 @@ public class BinaryHeap {
     
     /**
      * Método para retornar la raíz
-     * @return
+     * @return nodo root, el de primera prioridad
      */
-    public TestNode getMin(){
+    public Document getMin(){
         return root;
     }
+    
+    /** Método para retornar el tamaño
+     * @return tamaño
+     */
+    public int getSize() {
+        return size;
+    }
+    
     
     /**
      * Método para corroborar si está vacío
@@ -36,27 +46,6 @@ public class BinaryHeap {
      */
     public boolean isEmpty(){
         return this.root == null;
-    }
-    
-    /**
-     *
-     * @param added
-     */
-    public void swapMin(TestNode added){
-        
-        TestNode father = added.getParent();
-        
-        if(added == father){
-        } else {
-            if(father != null){
-                if(added.getData() < father.getData()){
-                    int aux = father.getData();
-                    father.setData(added.getData());
-                    added.setData(aux);
-                    swapMin(father);
-                }
-            }         
-        }
     }
     
     /**
@@ -88,59 +77,243 @@ public class BinaryHeap {
     }
     
     /**
-     * Método para insertar un nuevo nodo
-     * @param value
+     * Método para retornar el nodo correspondiente dada una posición
+     * @param position, es la posición del nodo en el montículo binario
+     * @return nodo correspondiente a esa posición
      */
-    public void insert(int value){
-        TestNode n = new TestNode(value);
-        int nextPos = size + 1; // corresponde a la posición deseada del nuevo nodo
-        String path = traversal(nextPos); // obtenemos el número binario de este
+    public Document getNode(int position){
         
-        if(isEmpty()){
+        if(position > getSize()){
+            return null;
+        }
+        
+        String path = traversal(position);
+        
+        Document aux = root;
+        
+        for(int i = 1; i < path.length(); i++){
             
+            char character = path.charAt(i);
+            
+            if(character == '0'){ // si el caracter es igual a 0, corresponde a un hijo izquierdo, así aux se actualizará hasta el penúltimo caracter
+                aux = aux.getLeftSon();
+            } else if (character == '1') { // si el caracter es igual a 1, corresponde a un hijo derecho
+                aux = aux.getRightSon();
+            }
+        }
+        
+        return aux;
+    }
+    
+    /**
+     * Método para retornar el padre de un nodo en la posición dada. Solo se utiliza para el método insertar!
+     * @param position posición del nodo hijo
+     * @return se obtiene el padre del nodo
+     */
+    public Document getNodeParent(int position){
+        
+        if(position > getSize() + 1){
+            return null;
+        }
+        
+        String path = traversal(position); // obtenemos el número binario de este
+        
+        Document aux = root; // Se inicia desde el root
+
+        for(int i = 1; i < path.length()-1; i++){ // Se busca hasta el penúltimo carácter para evitar null pointer errors
+
+            char character = path.charAt(i);
+
+            if(character == '0'){ // si el caracter es igual a 0, corresponde a un hijo izquierdo, así aux se actualizará hasta el penúltimo caracter
+                aux = aux.getLeftSon();
+            } else if (character == '1') { // si el caracter es igual a 1, corresponde a un hijo derecho
+                aux = aux.getRightSon();
+            }
+        }
+        
+        return aux;
+    }
+    
+    /**
+     * Método para intercambiar nodos
+     * @param a uno de los nodos que se desea intercambiar
+     * @param b otro de los nodos que se desea intercambiar
+     */
+    public void swap(Document a, Document b){
+        if(a != b){
+            
+            Document temp = new Document(a.getName(), a.getSize(), a.getType());
+            temp.setValue(a.getValue());
+            temp.setPosition(a.getPosition());
+            
+            a.setValue(b.getValue());
+            a.setPosition(b.getPosition());
+            
+            b.setValue(temp.getValue());
+            b.setPosition(temp.getPosition());
+            
+        }
+    }
+    
+    
+    /**
+     * Método para ir moviendo el nodo que se inserta hacia arriba, si es necesario
+     * @param node, nodo desde el cual se comienza a hacer el proceso
+     */
+    public void heapUp(Document node){
+        
+        Document father = node.getFather();
+        
+        if(node == father){
+        } else {
+            if(father != null){
+                if(node.getValue() < father.getValue()){
+                    swap(father, node);
+                    heapUp(father);
+                }
+            }         
+        }
+    }
+        
+    /**
+     * Método para insertar un nuevo nodo
+     * @param n nodo nuevo que se va a insertar
+     */
+    public void insert(Document n){
+        
+        int nextPos = getSize() + 1; // corresponde a la posición deseada del nuevo nodo
+        
+        if(isEmpty()){      
             root = n; // si está vacío, simplemente se iguala
-            
         } else {
             
-            TestNode aux = root; // Se inicia desde el root
-                        
-            for(int i = 1; i < path.length()-1; i++){ // Se busca hasta el penúltimo carácter para evitar null pointer errors
-
-                char character = path.charAt(i);
-
-                if(character == '0'){ // si el caracter es igual a 0, corresponde a un hijo izquierdo, así aux se actualizará hasta el penúltimo caracter
-                    aux = aux.getLeftChild();
-                } else if (character == '1') { // si el caracter es igual a 1, corresponde a un hijo derecho
-                    aux = aux.getRightChild();
-                }
-            }
+            
+            String path = traversal(nextPos); // obtenemos el número binario de este 
+            Document aux = getNodeParent(nextPos);
             
             char character = path.charAt(path.length()-1); // aquí obtenemos el último valor al cual en lugar de hacerle un get, se le hará un set
 
             if(character == '0'){
-                aux.setLeftChild(n); // se hace un set y evitamos null pointer exceptions
+                aux.setLeftSon(n); // se hace un set y evitamos null pointer exceptions
             } else if (character == '1') {
-                aux.setRightChild(n);
+                aux.setRightSon(n);
             }
-            n.setParent(aux); // asignamos al padre de manera que el intercambio se pueda realizar sin problemas después
+            n.setFather(aux); // asignamos al padre de manera que el intercambio se pueda realizar sin problemas después
 
         }
         
+        n.setPosition(nextPos);
         size++; // sin importar que acción se tome, se aumentará el tamaño
-        
-        swapMin(n);
+        heapUp(n);
         
     }
     
     /**
      * Método para mostrar el montículo en forma de preorden
-     * @param root
+     * @param root, nodo desde el cual se comienza el preorder, se irá actualizando
      */
-    public void preorder(TestNode root){
+    public void preorder(Document root){
         if(root != null){
-            System.out.println(root.getData());
-            preorder(root.getLeftChild());
-            preorder(root.getRightChild());
+            System.out.println(root.getValue());
+            preorder(root.getLeftSon());
+            preorder(root.getRightSon());
+        }
+    }
+
+    /**
+     * Método para reorganizar el montículo cuando es necesario
+     * @param root, inicialmente se comienza en el root, este se irá actualizando con la recursividad
+     */
+    public void heapSort(Document root){
+                
+        Document aux = root;
+        Document leftChild = root.getLeftSon();
+        Document rightChild = root.getRightSon();
+                    
+        if(leftChild != null && aux.getValue() > leftChild.getValue()){
+            aux = leftChild;
+
+        }if(rightChild != null && aux.getValue() > rightChild.getValue()){
+            aux = rightChild;
+            
+        } if(aux != root){
+
+            swap(root, aux);
+            heapSort(aux);
+
+        }       
+    }
+    
+    /**
+     * Método para eliminar el root, es decir, el nodo de mayor prioridad
+     */
+    public void deleteMin(){
+        
+        if(!isEmpty()){
+
+            if(getSize() == 1){
+
+                root = null;
+                size --;
+
+            }else{
+
+                Document last = getNode(getSize());
+                String path = traversal(getSize()); // obtenemos el número binario de este
+
+                swap(root, last);
+
+                Document aux = last.getFather();
+
+                char character = path.charAt(path.length()-1); // aquí obtenemos el último valor
+
+                if(character == '0'){
+                    aux.setLeftSon(null); // se hace un set y evitamos null pointer exceptions
+                } else if (character == '1') {
+                    aux.setRightSon(null);
+                }
+
+                last.setPosition(-1); // Se settea a -1 para validaciones
+                size--;
+                
+                heapSort(root);
+            
+            }
+        }
+          
+    }
+    
+    /**
+     * Método para eliminar un nodo dado, ya sea el root o uno distinto de este
+     * @param position la posición en la que se encuante dicho nodo, este se extraerá del hashtable con el getPosition del documento en específico
+     */
+    public void deletion(int position){
+        
+        if(isEmpty()){
+            JOptionPane.showMessageDialog(null, "La cola se encuentra vacía");
+            
+        } else {
+            if(position < 1 || position > getSize()){
+                JOptionPane.showMessageDialog(null, "Posición ingresada es inválida.");
+                
+            } else if(position == 1){
+                deleteMin();
+                
+            } else{
+                
+                Document toDelete = getNode(position);
+                Document last = getNode(getSize());
+                
+                swap(last, toDelete);
+                
+                heapSort(toDelete);
+                
+                swap(last, root);
+                
+                deleteMin();               
+                
+            }
+            
         }
     }
 }
