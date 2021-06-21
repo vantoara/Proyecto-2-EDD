@@ -19,7 +19,9 @@ public class beginningWindow extends javax.swing.JFrame {
     
     public String path;
     
-    /** Creates new form beginningWindow */
+    /** 
+     * Constructor de la clase beginningWindow
+     */
     public beginningWindow() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -121,7 +123,10 @@ public class beginningWindow extends javax.swing.JFrame {
     private void pathTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pathTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_pathTxtActionPerformed
-
+    /*
+    * Método que permite escoger un archivo csv de donde cargar una lista de usuarios registrados con un JFileChooser al presionar el botón de abrir
+    * @param evt evento generado al presionar el botón
+    */
     private void bChooseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bChooseActionPerformed
         JFileChooser jf = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos .csv", "csv");
@@ -134,7 +139,10 @@ public class beginningWindow extends javax.swing.JFrame {
             pathTxt.setText(path);
         }
     }//GEN-LAST:event_bChooseActionPerformed
-
+    /*
+    * Método que permite iniciar la simulación (abriendo la ventana con el menú de opciones del programa) al presionar el botón de iniciar
+    * @param evt evento generado al presionar el botón
+    */
     private void bBeginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBeginActionPerformed
         proyecto.pkg2.UserList users = csvFile.readCSV(path);
         if (users == null){

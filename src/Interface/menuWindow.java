@@ -22,7 +22,11 @@ public class menuWindow extends javax.swing.JFrame {
     public static proyecto.pkg2.UserList users;
     proyecto.pkg2.User currentUser;
     
-    /** Creates new form menuWindow */
+    /**
+     * Constructor de la clase menuWindow 
+     * @param users lista de usuarios registrados
+     * @param path string con la ruta del archivo csv cargado o null si no se logró cargar
+     */
     public menuWindow(proyecto.pkg2.UserList users, String path) {
         initComponents();
         this.path = path;
@@ -372,6 +376,10 @@ public class menuWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /*
+    * Método que permite agregar un usuario nuevo al presionarse el botón de agregar usuario
+    * @param evt evento generado al presionar el botón
+    */
     private void bAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddUserActionPerformed
         if (newNameTxt.getText().isBlank() || newNameTxt.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Antes de agregar un nuevo usuario, debes ingresar su nombre de usuario.", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -384,7 +392,10 @@ public class menuWindow extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_bAddUserActionPerformed
-
+    /*
+    * Método que permite eliminar un usuario al presionar el botón de eliminar usuario
+    * @param evt evento generado al presionar el botón
+    */
     private void bDeleteUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDeleteUserActionPerformed
         if (deleteUserNameTxt.getText().isBlank() || deleteUserNameTxt.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Antes de eliminar un usuario, debes ingresar su nombre de usuario.", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -392,7 +403,11 @@ public class menuWindow extends javax.swing.JFrame {
             this.users.deleteUser(deleteUserNameTxt.getText());
         }
     }//GEN-LAST:event_bDeleteUserActionPerformed
-
+    
+    /*
+    * Método que permite ver los usuarios registrados y sus documentos al presionar el botón de ver usuarios
+    * @param evt evento generado al presionar el botón
+    */
     private void bSeeUsersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSeeUsersActionPerformed
         if (!this.users.isEmpty()){
             JTextArea text = new JTextArea(this.users.showUsers());
@@ -404,7 +419,10 @@ public class menuWindow extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Aún no se ha registrado ningún usuario.");
         }
     }//GEN-LAST:event_bSeeUsersActionPerformed
-
+    /*
+    * Método que permite salir del programa (y guardar si se da la opción y el usuario lo desea) al presionar el botón de salida
+    * @param evt evento generado al presionar el botón
+    */
     private void bExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bExitActionPerformed
         if (path != null){
             String[] options = {"Sí", "No", "Volver"};
@@ -439,7 +457,10 @@ public class menuWindow extends javax.swing.JFrame {
     private void sendToQueueTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendToQueueTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_sendToQueueTxtActionPerformed
-
+    /*
+    * Método que permite enviar un documento a la cola de impresión al presionar el botón de enviar a imprimir
+    * @param evt evento generado al presionar el botón
+    */
     private void bSendToQueueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSendToQueueActionPerformed
         // TODO 
         //HAZ UN JOPTIONPANE SHOW OPTION OR SMTH PARA SABER SI ES PRIORITARIOOOO
@@ -449,7 +470,10 @@ public class menuWindow extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Antes de eliminar un documento de la cola de impresión, debes iniciar sesión.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_bSendToQueueActionPerformed
-
+    /*
+    * Método que permite al usuario iniciar sesión al presionar el botón de iniciar sesión
+    * @param evt evento generado al presionar el botón
+    */
     private void bLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bLogInActionPerformed
         if (userTxt.getText().isBlank() || userTxt.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Para iniciar sesión, debes ingresar un nombre de usuario.", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -465,7 +489,10 @@ public class menuWindow extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_bLogInActionPerformed
-
+    /*
+    * Método que permite crear un nuevo documento al presionar el botón de crear 
+    * @param evt evento generado al presionar el botón
+    */
     private void bNewDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNewDocActionPerformed
         if (this.currentUser != null){    
             if (newDocNameTxt.getText().isBlank() || newDocNameTxt.getText().isEmpty()){
@@ -477,7 +504,10 @@ public class menuWindow extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Antes de crear un nuevo documento, debes iniciar sesión.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_bNewDocActionPerformed
-
+    /*
+    * Método que permite eliminar un documento que no esté en la cola de impresión al presionar el botón de eliminar
+    * @param evt evento generado al presionar el botón
+    */
     private void bDelDocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDelDocActionPerformed
         if (this.currentUser != null){    
             if (delDocNameTxt.getText().isBlank() || delDocNameTxt.getText().isEmpty()){
@@ -489,7 +519,10 @@ public class menuWindow extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Antes de eliminar un documento, debes iniciar sesión.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_bDelDocActionPerformed
-
+    /*
+    * Método que permite eliminar un documento de la cola de impresión al presionar el botón de eliminar (de la cola de impresión)
+    * @param evt evento generado al presionar el botón
+    */
     private void bDelQueueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDelQueueActionPerformed
         // TODO 
         if (this.currentUser != null){
