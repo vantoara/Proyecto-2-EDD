@@ -6,17 +6,26 @@
 package proyecto.pkg2;
 
 /**
- *
- * @author vadau
+ * Clase para medir el tiempo transcurrido
+ * @author Ana Tovar
  */
 public class Time {
     
     private final long start;
     
+    /**
+     * Constructor de la clase, start es el tiempo cuando se inicia el programa
+     */
     public Time(){
         start = System.currentTimeMillis();
     }
     
+    /**
+     * Método para settear la etiqueta de tiempo de un documento cuando se envía a imprimir
+     * @param priority booleano que revisa si el documento es de prioridad o no
+     * @param user nodo de usuario que ha enviado el documento a imprimir
+     * @param doc nodo de documento correspondiente al que se quiere imprimir y al que se le asignará la etiqueta de tiempo
+     */
     public void getTime(boolean priority, User user, Document doc){
         long current = System.currentTimeMillis();
         double now = (current - start) / 1000.0;
