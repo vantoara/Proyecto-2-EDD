@@ -259,10 +259,11 @@ public class BinaryHeap {
         if(!isEmpty()){
 
             if(getSize() == 1){
-
+                
+                root.setPosition(-1); // Se settea a -1 para validaciones
+                root.setInQueue(false);
                 root = null;
-                size --;
-
+                
             }else{
 
                 Document last = getNode(getSize());
@@ -282,11 +283,12 @@ public class BinaryHeap {
 
                 last.setPosition(-1); // Se settea a -1 para validaciones
                 last.setInQueue(false);
-                size--;
-                
+                                
                 heapSort(root);
             
             }
+            
+            size--;
         }
           
     }
