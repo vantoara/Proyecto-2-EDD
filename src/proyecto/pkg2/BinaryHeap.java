@@ -146,9 +146,15 @@ public class BinaryHeap {
             temp.setValue(a.getValue());
             temp.setPosition(a.getPosition());
             
+            a.setName(b.getName());
+            a.setSize(b.getSize());
+            a.setType(b.getType());
             a.setValue(b.getValue());
             a.setPosition(b.getPosition());
             
+            b.setName(temp.getName());
+            b.setSize(temp.getSize());
+            b.setType(temp.getType());
             b.setValue(temp.getValue());
             b.setPosition(temp.getPosition());
             
@@ -203,6 +209,7 @@ public class BinaryHeap {
         }
         
         n.setPosition(nextPos);
+        n.setInQueue(true);
         size++; // sin importar que acción se tome, se aumentará el tamaño
         heapUp(n);
         
@@ -274,6 +281,7 @@ public class BinaryHeap {
                 }
 
                 last.setPosition(-1); // Se settea a -1 para validaciones
+                last.setInQueue(false);
                 size--;
                 
                 heapSort(root);
