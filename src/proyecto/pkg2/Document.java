@@ -21,7 +21,7 @@ public class Document {
     private Document rightSon;
     private Document pNext;
     private int position; // Servirá más que nada en el hashtable y la función de eliminar
-    private int value;
+    private double value;
     
     /**
      * Constructor
@@ -35,7 +35,8 @@ public class Document {
         this.type = type;
         this.inQueue = false;
         this.father = this.leftSon = this.rightSon = this.pNext = null;
-        this.position = this.value = -1;
+        this.position = -1;
+        this.value = -1;
     }
 
     /**
@@ -199,11 +200,11 @@ public class Document {
         this.position = pos;
     }
     
-    public int getValue(){
+    public double getValue(){
         return value;
     }
     
-    public void setValue(int time){
+    public void setValue(double time){
         this.value = time;
     }
     
