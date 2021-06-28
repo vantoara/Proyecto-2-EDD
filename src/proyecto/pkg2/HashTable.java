@@ -96,6 +96,7 @@ public class HashTable {
         return -1;
         
     }
+}
 
 
 //    Hash table más o menos como lo plantea Stefani en la prepa, sin encadenamiento, lo hice a las 4am, así que capaz tenga errores
@@ -106,6 +107,9 @@ public class HashTable {
 //    public HashTable(){
 //        this.size = 10111;
 //        this.table = new Document[size];
+//        for(int i = 0; i < this.size; i++){
+//            table[i] = null;
+//        }
 //    }
 //    
 //    public int hashing(User user, Document doc){
@@ -124,29 +128,28 @@ public class HashTable {
 //        boolean exist = false;
 //        
 //        if(table[index] != null){
+//            
+//            Document temp = table[index];
 //                   
-//            if(table[index] == doc){
+//            if(temp == doc){
 //                exist = true;
-//            } else{
-//                while(table[index] != null){
-//                    index++;
-//                    
-//                }
-//                
-//                if(table[index] == doc){
+//            }
+//            
+//            while(temp.getpNext() != null){
+//                temp = temp.getpNext();
+//                if(temp == doc){
 //                    exist = true;
-//                }
+//                } 
 //            }
 //            
 //            if(!exist){
-//                
-//                table[index] = doc;
+//
+//                temp.setpNext(doc);
 //            }
+//    
 //        } else{
-//            
 //            table[index] = doc;
 //        }
-//        
 //    }
 //    
 //    public void delete(User user, Document doc){
@@ -155,16 +158,23 @@ public class HashTable {
 //        
 //        if(table[index] == null){
 //        } else{
-//            if(table[index] == doc){
-//                table[index] = null;
+//            
+//            Document temp = table[index];
+//            Document aux = temp;
+//            
+//            if(temp == doc){
+//               
+//                temp = temp.getpNext();
+//                table[index] = temp;
 //                
 //            } else{
-//                while(!(table[index] == doc)){
-//                    index++;
-//                }
 //                
-//                if(table[index] == doc){
-//                    table[index] = null;
+//                while(temp.getpNext() != null){
+//                    aux = temp;
+//                    temp = temp.getpNext();
+//                    if(temp == doc){
+//                        aux.setpNext(temp.getpNext());
+//                    } 
 //                }
 //            }       
 //            
@@ -172,29 +182,31 @@ public class HashTable {
 //                            
 //    }
 //
-//    
-//    
 //    public int getPos(User user, Document doc){
 //        
 //        int index = hashing(user, doc);
+//        Document temp = table[index];
+//        boolean exist = false;
 //        
-//        if(table[index] != null){
-//            if(table[index] == doc){
-//                return table[index].getPosition();
+//        if(temp != null){
+//            if(temp.getpNext() == null){
+//                
+//                exist = true;
+//            } else{
+//                while(temp.getpNext() != null && !exist){
+//                    if(temp == doc){
+//                        exist = true;
+//                    } else{
+//                        temp = temp.getpNext();
+//                    }
+//                }
 //            }
-//            
-//            while(table[index] != doc){
-//                index++;
-//            }
-//            
-//            if(table[index] == doc){
-//                return table[index].getPosition();
-//            }
-//            
 //        }
 //        
-//        return -1;
-//        
-//    }
-    
-}
+//        if(exist){
+//            return doc.getPosition();
+//        } else{
+//            return -1;
+//        }   
+//    }  
+//}
