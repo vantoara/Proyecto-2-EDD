@@ -7,7 +7,7 @@ package proyecto.pkg2;
 import Interface.beginningWindow;
 /**
  *
- * @author vadau
+ * @author Liliana Nóbrega
  */
 public class Proyecto2 {
     /**

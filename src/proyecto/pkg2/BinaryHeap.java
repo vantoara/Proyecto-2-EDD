@@ -32,8 +32,9 @@ public class BinaryHeap {
         return root;
     }
     
-    /** Método para retornar el tamaño
-     * @return tamaño
+    /** 
+     * Método para retornar el tamaño
+     * @return tamaño del montículo binario
      */
     public int getSize() {
         return size;
@@ -41,8 +42,8 @@ public class BinaryHeap {
     
     
     /**
-     * Método para corroborar si está vacío
-     * @return
+     * Método para corroborar si está vacío el montículo binario
+     * @return true si está vacío, false si no
      */
     public boolean isEmpty(){
         return this.root == null;
@@ -53,7 +54,7 @@ public class BinaryHeap {
      * @param value, valor entero que corresponde con la "posición" en la que se colocará el nuevo nodo
      * @return
      */
-    public String traversal(int value){
+    public String findPath(int value){
         
         if(isEmpty()){
             return "0"; // Si está vacío se retornará 0
@@ -87,7 +88,7 @@ public class BinaryHeap {
             return null;
         }
         
-        String path = traversal(position);
+        String path = findPath(position);
         
         Document aux = root;
         
@@ -106,7 +107,7 @@ public class BinaryHeap {
     }
     
     /**
-     * Método para retornar el padre de un nodo en la posición dada. Solo se utiliza para el método insertar!
+     * Método para retornar el padre de un nodo en la posición dada. Solo se utiliza para el método insertar
      * @param position posición del nodo hijo
      * @return se obtiene el padre del nodo
      */
@@ -116,11 +117,11 @@ public class BinaryHeap {
             return null;
         }
         
-        String path = traversal(position); // obtenemos el número binario de este
+        String path = findPath(position); // obtenemos el número binario de este
         
         Document aux = root; // Se inicia desde el root
 
-        for(int i = 1; i < path.length()-1; i++){ // Se busca hasta el penúltimo carácter para evitar null pointer errors
+        for(int i = 1; i < path.length()-1; i++){ // Se busca hasta el penúltimo carácter para evitar null pointer exceptions
 
             char character = path.charAt(i);
 
@@ -194,7 +195,7 @@ public class BinaryHeap {
         } else {
             
             
-            String path = traversal(nextPos); // obtenemos el número binario de este 
+            String path = findPath(nextPos); // obtenemos el número binario de este 
             Document aux = getNodeParent(nextPos);
             
             char character = path.charAt(path.length()-1); // aquí obtenemos el último valor al cual en lugar de hacerle un get, se le hará un set
@@ -267,7 +268,7 @@ public class BinaryHeap {
             }else{
 
                 Document last = getNode(getSize());
-                String path = traversal(getSize()); // obtenemos el número binario de este
+                String path = findPath(getSize()); // obtenemos el número binario de este
 
                 swap(root, last);
 
@@ -295,7 +296,7 @@ public class BinaryHeap {
     
     /**
      * Método para eliminar un nodo dado, ya sea el root o uno distinto de este
-     * @param position la posición en la que se encuante dicho nodo, este se extraerá del hashtable con el getPosition del documento en específico
+     * @param position la posición en la que se encuentre dicho nodo, este se extraerá del hashtable con el getPosition del documento en específico
      */
     public void deletion(int position){
         

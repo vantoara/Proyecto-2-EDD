@@ -191,19 +191,39 @@ public class Document {
     public String showAttributes(){
         return "\tNombre: \""+this.name+"\"\n\tTamaño: "+this.size+" Bytes\n\tTipo: "+this.type+"\n\tEstado: "+((this.inQueue)? "en la cola de impresión.\n" : "listo para enviar a la cola de impresión.\n");
     }
-    
+
+    /**
+     * Getter del atributo position
+     * @return position (posición del documento en la cola de impresión)
+     * @author Ana Tovar
+     */    
     public int getPosition(){
         return position;
     }
     
+    /**
+     * Setter del atributo position
+     * @param pos nueva posición del documento en la cola de impresión
+     * @author Ana Tovar
+     */    
     public void setPosition(int pos){
         this.position = pos;
     }
     
+    /**
+     * Getter del atributo value
+     * @return value (representa la etiqueta de tiempo que dicta la posición del documento en la cola de impresión)
+     * @author Ana Tovar
+     */
     public double getValue(){
         return value;
     }
     
+    /**
+     * Setter del atributo value
+     * @param time nuevo valor para el atributo value, que representa la etiqueta de tiempo que dicta la posición del documento en la cola de impresión
+     * @author Ana Tovar
+     */
     public void setValue(double time){
         this.value = time;
     }

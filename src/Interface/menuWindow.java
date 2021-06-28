@@ -210,7 +210,7 @@ public class menuWindow extends javax.swing.JFrame {
         jPanel4.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 770, 290, 10));
 
         jLabel5.setText("Nombre de usuario:");
-        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 130, 40));
+        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 300, 40));
 
         userTxt.setText("Ingresa tu nombre de usuario");
         jPanel4.add(userTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 200, -1));
@@ -229,7 +229,7 @@ public class menuWindow extends javax.swing.JFrame {
         jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 650, 290, 40));
 
         jLabel12.setText("Nombre del documento:");
-        jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 130, 40));
+        jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 230, 40));
 
         newDocNameTxt.setText("Ingresa el nombre del documento");
         jPanel4.add(newDocNameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 290, -1));
