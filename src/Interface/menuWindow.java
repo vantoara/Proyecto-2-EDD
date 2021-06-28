@@ -11,6 +11,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import proyecto.pkg2.csvFile;
 import proyecto.pkg2.User;
+import proyecto.pkg2.Time;
 
 /**
  * Clase relacionada a la ventana con el menú de opciones 
@@ -21,15 +22,19 @@ public class menuWindow extends javax.swing.JFrame {
     public static String path;
     public static proyecto.pkg2.UserList users;
     proyecto.pkg2.User currentUser;
+    proyecto.pkg2.BinaryHeap priorityQueue;
+    public static proyecto.pkg2.Time timer;
     
     /**
      * Constructor de la clase menuWindow 
      * @param users lista de usuarios registrados
      * @param path string con la ruta del archivo csv cargado o null si no se logró cargar
      */
-    public menuWindow(proyecto.pkg2.UserList users, String path) {
+    public menuWindow(proyecto.pkg2.UserList users, String path, proyecto.pkg2.Time timer) {
         initComponents();
+        this.priorityQueue = new proyecto.pkg2.BinaryHeap();
         this.path = path;
+        this.timer = timer;
         if (users == null){
             this.users = new proyecto.pkg2.UserList();
         }else{
@@ -41,7 +46,6 @@ public class menuWindow extends javax.swing.JFrame {
         priorityChoice.add("prioridad_baja");
         priorityChoice.add("prioridad_media");
         priorityChoice.add("prioridad_alta");
-        //AAAAAAAAAAAAAAAAAAAAAAAAAA IDK SI ESTO ES LO DEL TIPO xd ALSO ES SUFICIENTE?
         docTypeChoice.add("pdf");
         docTypeChoice.add("txt");
         docTypeChoice.add("doc");
@@ -329,6 +333,11 @@ public class menuWindow extends javax.swing.JFrame {
         bPrint.setBackground(new java.awt.Color(255, 227, 238));
         bPrint.setText("Imprimir primer documento en la cola");
         bPrint.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
+        bPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bPrintActionPerformed(evt);
+            }
+        });
         jPanel4.add(bPrint, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 610, 250, 30));
 
         jLabel19.setText("LIBERAR IMPRESORA");
@@ -462,10 +471,18 @@ public class menuWindow extends javax.swing.JFrame {
     * @param evt evento generado al presionar el botón
     */
     private void bSendToQueueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSendToQueueActionPerformed
-        // TODO 
-        //HAZ UN JOPTIONPANE SHOW OPTION OR SMTH PARA SABER SI ES PRIORITARIOOOO
         if (this.currentUser != null){
-        
+            if (sendToQueueTxt.getText().isEmpty() || sendToQueueTxt.getText().isBlank()){
+                JOptionPane.showMessageDialog(null, "Antes de eliminar un documento de la cola de impresión, debes indicar su nombre.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }else{
+                String [] options = {"Sí", "No"};
+                int answer = JOptionPane.showOptionDialog(null, "¿El documento es prioritario?", "Prioridad", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+                boolean priority = false;
+                if (answer == 0){
+                    priority = true;
+                }
+                currentUser.getDocs().sendToQueue(priorityQueue, sendToQueueTxt.getText(), currentUser, priority, timer);
+            }
         }else{
             JOptionPane.showMessageDialog(null, "Antes de eliminar un documento de la cola de impresión, debes iniciar sesión.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
@@ -532,6 +549,10 @@ public class menuWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_bDelQueueActionPerformed
 
+    private void bPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPrintActionPerformed
+        priorityQueue.deleteMin();
+    }//GEN-LAST:event_bPrintActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -562,7 +583,7 @@ public class menuWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new menuWindow(users, path).setVisible(true);
+                new menuWindow(users, path, timer).setVisible(true);
             }
         });
     }

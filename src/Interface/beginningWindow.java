@@ -10,6 +10,7 @@ import proyecto.pkg2.UserList;
 import javax.swing.JFileChooser;
 import java.io.File; 
 import javax.swing.filechooser.FileNameExtensionFilter;
+import proyecto.pkg2.Time;
 
 /**
  * Clase asociada con la ventana inicial del programa
@@ -17,13 +18,15 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class beginningWindow extends javax.swing.JFrame {
     
-    public String path;
+    String path;
+    proyecto.pkg2.Time timer;
     
     /** 
      * Constructor de la clase beginningWindow
      */
     public beginningWindow() {
         initComponents();
+        this.timer = new proyecto.pkg2.Time();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         path = null;
@@ -148,7 +151,7 @@ public class beginningWindow extends javax.swing.JFrame {
         if (users == null){
             this.path = null;
         }
-        menuWindow mW = new menuWindow(users, path);
+        menuWindow mW = new menuWindow(users, path, timer);
         this.dispose();
     }//GEN-LAST:event_bBeginActionPerformed
 

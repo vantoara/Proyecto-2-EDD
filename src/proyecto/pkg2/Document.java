@@ -168,23 +168,6 @@ public class Document {
     }
 
     /**
-     * Método para enviar un documento a la cola de impresión
-     */
-    public void sendToQueue(){
-        this.inQueue = true;
-        JOptionPane.showMessageDialog(null, "El documento \""+this.name+"\" fue enviado a la cola de impresión.");
-    }
-
-    /**
-     * Método para imprimir el documento
-     */
-    public void printDoc(){
-        this.inQueue = false;
-        JOptionPane.showMessageDialog(null, "El documento \""+this.name+"\" ha sido impreso exitosamente.");
-
-    }
-
-    /**
      * Método para mostrar los atributos del documento
      * @return string con todos los atributos del documento
      */

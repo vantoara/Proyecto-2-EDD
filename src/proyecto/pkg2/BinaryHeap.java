@@ -290,6 +290,9 @@ public class BinaryHeap {
             }
             
             size--;
+            JOptionPane.showMessageDialog(null, "Operación realizada exitosamente.");
+        }else{
+            JOptionPane.showMessageDialog(null, "La cola está vacía.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
           
     }

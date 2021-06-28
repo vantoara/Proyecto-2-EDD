@@ -112,7 +112,7 @@ public class DocList {
             JOptionPane.showMessageDialog(null, "El documento a eliminar no se encuentra en la lista de documentos de este usuario.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }else{
             if (this.getNode(name).isInQueue()){
-                JOptionPane.showMessageDialog(null, "Este documento está en la cola de impresión. Para eliminarlo permanentemente, debes eliminarlo de la cola de impresión y luego eliminarlo de la lista de documentos.", "Aviso", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Este documento está en la cola de impresión. Para eliminarlo permanentemente,\ndebes eliminarlo de la cola de impresión y luego eliminarlo de la lista de documentos.", "Aviso", JOptionPane.WARNING_MESSAGE);
             }else{
                 this.deleteAtPosition(position);
                 JOptionPane.showMessageDialog(null, "El documento \""+name+"\" fue eliminado exitosamente.");
@@ -245,4 +245,29 @@ public class DocList {
             return "\tAún no se han creado documentos.\n";
         }
     }
+    
+    /**
+     * Método para enviar un documento a la cola de impresión
+     * @param q cola de impresión/prioridad a la que se envía el documento
+     * @param name nombre del documento a enviar a la cola
+     * @param user usuario que envió el documento a la cola
+     * @param priority booleano que indica si el documento es de prioridad o no
+     * @param timer timer que permite determinar el tiempo que debe aparecer en la etiqueta de tiempo del documento
+     */
+    public void sendToQueue(BinaryHeap q, String name, User user, boolean priority, Time timer){
+        Document doc = this.getNode(name);
+        if (doc == null){
+            JOptionPane.showMessageDialog(null, "El documento no existe. Valide sus datos.", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }else if (!doc.isInQueue()){
+            Document docCopy = new Document(doc.getName(), doc.getSize(), doc.getType()); //se hace una copia para que al trabajar con el nodo dentro del hash table y el montículo binario, no afecte a los atributos del documento original
+            timer.setTime(priority, user, docCopy);
+            //FALTA LO DE ENVIAR AL HASHTABLE!!!!!!!!!!
+            q.insert(docCopy);
+            doc.setInQueue(true);
+            JOptionPane.showMessageDialog(null, "El documento \""+name+"\" fue enviado a la cola de impresión.");
+        }else{
+            JOptionPane.showMessageDialog(null, "El documento ya está en la cola de impresión.");
+        }
+    }
+    
 }
