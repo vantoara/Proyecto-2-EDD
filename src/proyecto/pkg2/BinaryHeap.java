@@ -142,21 +142,20 @@ public class BinaryHeap {
     public void swap(Document a, Document b){
         if(a != b){
             
-            Document temp = new Document(a.getName(), a.getSize(), a.getType());
-            temp.setValue(a.getValue());
-            temp.setPosition(a.getPosition());
+            int temp = a.getPosition();
+            Document tempLeft = a.getLeftSon();
+            Document tempRight = a.getRightSon();
+            Document tempFather = a.getFather();
             
-            a.setName(b.getName());
-            a.setSize(b.getSize());
-            a.setType(b.getType());
-            a.setValue(b.getValue());
             a.setPosition(b.getPosition());
-            
-            b.setName(temp.getName());
-            b.setSize(temp.getSize());
-            b.setType(temp.getType());
-            b.setValue(temp.getValue());
-            b.setPosition(temp.getPosition());
+            a.setLeftSon(b.getLeftSon());
+            a.setRightSon(b.getRightSon());
+            a.setFather(b.getFather());
+
+            b.setPosition(temp);
+            b.setLeftSon(tempLeft);
+            b.setRightSon(tempRight);
+            b.setFather(tempFather);
             
         }
     }
@@ -312,13 +311,20 @@ public class BinaryHeap {
             } else{
                 
                 Document toDelete = getNode(position);
-                Document last = getNode(getSize());
                 
-                swap(last, toDelete);
+                toDelete.setValue(0);
                 
-                heapSort(toDelete);
+                heapUp(toDelete);
                 
-                swap(last, root);
+                // Lo que estaba antes para eliminar, lo de arriba ^^ falta por testear
+                
+//                Document last = getNode(getSize());
+//                
+//                swap(last, toDelete);
+//                
+//                heapSort(toDelete);
+//                
+//                swap(last, root);
                 
                 deleteMin();               
                 
