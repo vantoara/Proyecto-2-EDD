@@ -15,6 +15,7 @@ public class TestNode {
     private TestNode leftChild;
     private TestNode rightChild;
     private int data;
+    private int position;
     
     /**
      * @return the parent
@@ -73,6 +74,15 @@ public class TestNode {
     }
     
     public TestNode(int data){
-        this.data = data; 
+        this.data = data;
+        this.position = -1;
     } 
+    
+    public int getPosition(){
+        return position;
+    }
+    
+    public void setPosition(int pos){
+        this.position = pos;
+    }
 }
