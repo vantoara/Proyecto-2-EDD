@@ -168,23 +168,6 @@ public class Document {
     }
 
     /**
-     * Método para enviar un documento a la cola de impresión
-     */
-    public void sendToQueue(){
-        this.inQueue = true;
-        JOptionPane.showMessageDialog(null, "El documento \""+this.name+"\" fue enviado a la cola de impresión.");
-    }
-
-    /**
-     * Método para imprimir el documento
-     */
-    public void printDoc(){
-        this.inQueue = false;
-        JOptionPane.showMessageDialog(null, "El documento \""+this.name+"\" ha sido impreso exitosamente.");
-
-    }
-
-    /**
      * Método para mostrar los atributos del documento
      * @return string con todos los atributos del documento
      */
@@ -192,18 +175,38 @@ public class Document {
         return "\tNombre: \""+this.name+"\"\n\tTamaño: "+this.size+" Bytes\n\tTipo: "+this.type+"\n\tEstado: "+((this.inQueue)? "en la cola de impresión.\n" : "listo para enviar a la cola de impresión.\n");
     }
     
+    /**
+     * Getter del atributo position
+     * @return position (posición del documento en la cola de impresión)
+     * @author Ana Tovar
+     */    
     public int getPosition(){
         return position;
     }
-    
+
+    /**
+     * Setter del atributo position
+     * @param pos nueva posición del documento en la cola de impresión
+     * @author Ana Tovar
+     */        
     public void setPosition(int pos){
         this.position = pos;
     }
     
+    /**
+     * Getter del atributo value
+     * @return value (representa la etiqueta de tiempo que dicta la posición del documento en la cola de impresión)
+     * @author Ana Tovar
+     */
     public double getValue(){
         return value;
     }
     
+    /**
+     * Setter del atributo value
+     * @param time nuevo valor para el atributo value, que representa la etiqueta de tiempo que dicta la posición del documento en la cola de impresión
+     * @author Ana Tovar
+     */
     public void setValue(double time){
         this.value = time;
     }
