@@ -22,6 +22,7 @@ public class Document {
     private Document pNext;
     private int position; // Servirá más que nada en el hashtable y la función de eliminar
     private double value;
+    private Document hashNext;
     
     /**
      * Constructor
@@ -209,6 +210,24 @@ public class Document {
      */
     public void setValue(double time){
         this.value = time;
+    }
+    
+    /**
+     * Getter del atributo hashNext
+     * @return hashNext, siguiente elemento en la misma posición del hash table
+     * @author Ana Tovar
+     */
+    public Document getHashNext(){
+        return hashNext;
+    }
+    
+    /**
+     * Setter del atributo value
+     * @param next nuevo nodo siguiente en la misma posición del hash table
+     * @author Ana Tovar
+     */
+    public void setHashNext(Document next){
+        this.hashNext = next;
     }
     
 }
