@@ -261,6 +261,7 @@ public class DocList {
         }else if (!doc.isInQueue()){
             timer.setTime(priority, user, doc);
             //FALTA LO DE ENVIAR AL HASHTABLE!!!!!!!!!!
+            doc.setInQueue(true);
             q.insert(doc);
             JOptionPane.showMessageDialog(null, "El documento \""+name+"\" fue enviado a la cola de impresión.");
         }else{

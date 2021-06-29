@@ -9,6 +9,7 @@ import java.awt.Dimension;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import proyecto.pkg2.BinaryHeap;
 import proyecto.pkg2.csvFile;
 import proyecto.pkg2.User;
 import proyecto.pkg2.Time;
@@ -356,6 +357,11 @@ public class menuWindow extends javax.swing.JFrame {
         bSeq.setBackground(new java.awt.Color(255, 227, 238));
         bSeq.setText("Ver como secuencia de registros");
         bSeq.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
+        bSeq.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bSeqActionPerformed(evt);
+            }
+        });
         jPanel4.add(bSeq, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 690, 210, 30));
         jPanel4.add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 290, 10));
         jPanel4.add(jSeparator12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 290, 10));
@@ -382,8 +388,6 @@ public class menuWindow extends javax.swing.JFrame {
             }
         });
         getContentPane().add(bExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 0, 40, 20));
-
-        background.setIcon(new javax.swing.ImageIcon("C:\\Users\\lilin\\Documents\\UNIMET\\6\\Estructuras de Datos\\PROYECTOS\\p2\\hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg")); // NOI18N
         getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 410));
 
         pack();
@@ -556,6 +560,14 @@ public class menuWindow extends javax.swing.JFrame {
     private void bPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPrintActionPerformed
         priorityQueue.deleteMin();        
     }//GEN-LAST:event_bPrintActionPerformed
+
+    private void bSeqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSeqActionPerformed
+        if (!this.users.isEmpty()){
+            priorityQueue.printCola("");
+        }else{
+            JOptionPane.showMessageDialog(null, "Aún no se ha registrado ningún usuario.");
+        }
+    }//GEN-LAST:event_bSeqActionPerformed
 
     /**
      * @param args the command line arguments

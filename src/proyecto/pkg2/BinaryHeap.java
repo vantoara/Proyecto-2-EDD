@@ -5,7 +5,10 @@
  */
 package proyecto.pkg2;
 
+import java.awt.Dimension;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 /**
  * Clase asociada al montículo binario. Javadoc incompleto porque está hecho con nodos de prueba
@@ -335,8 +338,11 @@ public class BinaryHeap {
     
     /**
      * Método para eliminar el root, es decir, el nodo de mayor prioridad
+     * @return retorna el nodo documento que se está eliminando
      */
-    public void deleteMin(){
+    public Document deleteMin(){
+        
+        Document min = root;
         
         if(!isEmpty()){
 
@@ -353,7 +359,6 @@ public class BinaryHeap {
 
                 Document last = getNode(getSize());
                 String path = findPath(getSize()); // obtenemos el número binario de este
-                Document min = root;
                 
                 swap(min, last);
 
@@ -376,12 +381,16 @@ public class BinaryHeap {
             
             }
             
-            size--;
+            size--;  
             JOptionPane.showMessageDialog(null, "Operación realizada exitosamente.");
+            return min;
+            
         }else{
             JOptionPane.showMessageDialog(null, "La cola está vacía.", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
+            return null;
+        } 
     }
+    
     
     /**
      * Método para eliminar un nodo dado, ya sea el root o uno distinto de este
@@ -413,4 +422,47 @@ public class BinaryHeap {
             
         }
     }
+    
+    /**
+     * Agrega a un String cada documento guardado en la cola, en el orden de la cola, y en formato bonito
+     * @param strCola Un string vacio al que se le agregan los documentos
+     */
+    public void printCola(String strCola){
+        if (!isEmpty()){
+//            System.out.println(strCola);
+            Document aux = deleteMin();
+            strCola += aux.showAttributes();
+            printCola(strCola);
+            this.insert(aux);
+            
+            JTextArea text = new JTextArea(strCola);
+            text.setLineWrap(false);
+            JScrollPane scrollPane = new JScrollPane(text);  
+            scrollPane.setPreferredSize(new Dimension(400, 400));
+            JOptionPane.showMessageDialog(null, scrollPane, "Cola de Impresión", JOptionPane.PLAIN_MESSAGE);
+            
+        }
+    }
+    
+//    public String inOrden(Document root){
+//        String strinOrden = "";
+//        if (root.getLeftSon() != null){
+//            inOrden(root.getLeftSon());
+//        }
+//        
+//        if (root.getLeftSon() == null){
+//            strinOrden = strinOrden + root.getName();
+//        }
+//        
+//        if (root.getFather() != null){
+//            if(root.getFather().getLeftSon() == root)
+//            strinOrden = strinOrden + root.getFather().getName();
+//        }
+//        
+//        if (root.getRightSon() != null){
+//            strinOrden = strinOrden + root.getRightSon();
+//        }
+//        
+//        return strinOrden;
+//    }
 }
