@@ -344,6 +344,9 @@ public class BinaryHeap {
                 
                 root.setPosition(-1); // Se settea a -1 para validaciones
                 root.setInQueue(false);
+                root.setFather(null);
+                root.setLeftSon(null);
+                root.setRightSon(null);
                 root = null;
                 
             }else{
@@ -366,7 +369,9 @@ public class BinaryHeap {
 
                 min.setPosition(-1); // Se settea a -1 para validaciones
                 min.setInQueue(false);
-                
+                min.setFather(null);
+                min.setLeftSon(null);
+                min.setRightSon(null);
                 heapSort(root);
             
             }
