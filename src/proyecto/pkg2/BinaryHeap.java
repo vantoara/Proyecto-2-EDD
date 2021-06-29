@@ -335,8 +335,11 @@ public class BinaryHeap {
     
     /**
      * Método para eliminar el root, es decir, el nodo de mayor prioridad
+     * @return retorna el nodo documento que se está eliminando
      */
-    public void deleteMin(){
+    public Document deleteMin(){
+        
+        Document min = root;
         
         if(!isEmpty()){
 
@@ -353,7 +356,6 @@ public class BinaryHeap {
 
                 Document last = getNode(getSize());
                 String path = findPath(getSize()); // obtenemos el número binario de este
-                Document min = root;
                 
                 swap(min, last);
 
@@ -376,18 +378,24 @@ public class BinaryHeap {
             
             }
             
-            size--;
+            size--;  
             JOptionPane.showMessageDialog(null, "Operación realizada exitosamente.");
+            return min;
+            
         }else{
             JOptionPane.showMessageDialog(null, "La cola está vacía.", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
+            return null;
+        } 
     }
     
     /**
      * Método para eliminar un nodo dado, ya sea el root o uno distinto de este
      * @param position la posición en la que se encuentre dicho nodo, este se extraerá del hashtable con el getPosition del documento en específico
+     * @return el nodo que se está eliminando
      */
-    public void deletion(int position){
+    public Document deletion(int position){
+        
+        Document delete = null;
         
         if(isEmpty()){
             JOptionPane.showMessageDialog(null, "La cola se encuentra vacía");
@@ -397,7 +405,7 @@ public class BinaryHeap {
                 JOptionPane.showMessageDialog(null, "Posición ingresada es inválida.");
                 
             } else if(position == 1){
-                deleteMin();
+                delete = deleteMin();
                 
             } else{
                 
@@ -407,10 +415,11 @@ public class BinaryHeap {
                 
                 heapUp(toDelete);
                                 
-                deleteMin();               
+                delete = deleteMin();               
                 
             }
             
-        }
+        }     
+        return delete;
     }
 }
