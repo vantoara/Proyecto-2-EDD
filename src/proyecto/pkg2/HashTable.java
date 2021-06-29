@@ -65,7 +65,7 @@ public class HashTable {
     public void delete(User user, Document doc){
         
         int index = hashing(user, doc);
-        boolean exist = true; // Ahora asumimos que si existe
+        boolean exist = true; // Ahora asumimos que sí existe
         
         if(table[index] != null){ // Es decir, dentro de la lista hay algo
             if(table[index].getDocIndex(doc.getName()) == -1){
@@ -83,7 +83,7 @@ public class HashTable {
      * Método para obtener la posición del documento que nos interesa del hash table
      * @param user Usuario que nos interesa buscar
      * @param doc Documento correspondiente al usuario que nos interesa buscar
-     * @return número correspondiente a la posición del documento en el binary heap
+     * @return número correspondiente a la posición del documento en el binary heap, -1 si no se consiguió
      */
     public int getPos(User user, Document doc){
         

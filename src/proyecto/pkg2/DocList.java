@@ -259,11 +259,9 @@ public class DocList {
         if (doc == null){
             JOptionPane.showMessageDialog(null, "El documento no existe. Valide sus datos.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }else if (!doc.isInQueue()){
-            Document docCopy = new Document(doc.getName(), doc.getSize(), doc.getType()); //se hace una copia para que al trabajar con el nodo dentro del hash table y el montículo binario, no afecte a los atributos del documento original
-            timer.setTime(priority, user, docCopy);
+            timer.setTime(priority, user, doc);
             //FALTA LO DE ENVIAR AL HASHTABLE!!!!!!!!!!
-            q.insert(docCopy);
-            doc.setInQueue(true);
+            q.insert(doc);
             JOptionPane.showMessageDialog(null, "El documento \""+name+"\" fue enviado a la cola de impresión.");
         }else{
             JOptionPane.showMessageDialog(null, "El documento ya está en la cola de impresión.");

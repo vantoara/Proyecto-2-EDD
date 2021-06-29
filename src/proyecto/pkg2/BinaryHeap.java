@@ -217,7 +217,7 @@ public class BinaryHeap {
             } else{ // a y b no están relacionados
                 
                 b.setLeftSon(tempLeft); // El hijo izquiedo de b ahora será el ex hijo izquierdo de a
-                if(tempLeft != null){ // si el hijo izquierdo de a es distinto de null, se le asigna a b como nuevo padre (anteriormente no se ahce porque ya a se le asigna a b como padre)
+                if(tempLeft != null){ // si el hijo izquierdo de a es distinto de null, se le asigna a b como nuevo padre (anteriormente no se hace porque ya a se le asigna a b como padre)
                     tempLeft.setFather(b);
                 }                 
             }
@@ -343,16 +343,18 @@ public class BinaryHeap {
             if(getSize() == 1){
                 
                 root.setPosition(-1); // Se settea a -1 para validaciones
+                root.setInQueue(false);
                 root = null;
                 
             }else{
 
                 Document last = getNode(getSize());
                 String path = findPath(getSize()); // obtenemos el número binario de este
+                Document min = root;
+                
+                swap(min, last);
 
-                swap(root, last);
-
-                Document aux = root.getFather();
+                Document aux = min.getFather();
 
                 char character = path.charAt(path.length()-1); // aquí obtenemos el último valor
 
@@ -362,8 +364,9 @@ public class BinaryHeap {
                     aux.setRightSon(null);
                 }
 
-                root.setPosition(-1); // Se settea a -1 para validaciones
-                                
+                min.setPosition(-1); // Se settea a -1 para validaciones
+                min.setInQueue(false);
+                
                 heapSort(root);
             
             }
