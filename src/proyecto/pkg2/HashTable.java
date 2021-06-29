@@ -43,15 +43,46 @@ public class HashTable {
      * @param user Usuario que nos interesa buscar
      * @param doc Documento correspondiente al usuario que nos interesa buscar
      */
+    
+//    public void add(User user, Document doc){
+//        
+//        int index = hashing(user, doc);
+//        if(table[index] != null){ // El slot correspondiente NO está vacío, es decir, algo más ocupa ese lugar
+//            while(table[index] != null){
+//                index++;
+//            }
+//            table[index] = doc;
+//        }else{ // Está vacío, se inserta
+//            table[index] = doc;
+//        }
+//    }
+    
     public void add(User user, Document doc){
-        
+       
         int index = hashing(user, doc);
-        if(table[index] != null){ // El slot correspondiente NO está vacío, es decir, algo más ocupa ese lugar
-            while(table[index] != null){
-                index++;
+        boolean exist = false;
+        
+        if(table[index] != null){
+            
+            Document temp = table[index];
+                   
+            if(temp == doc){
+                exist = true;
             }
-            table[index] = doc;
-        }else{ // Está vacío, se inserta
+            
+            while(temp.getHashNext() != null){
+                temp = temp.getHashNext();
+                if(temp == doc){
+                    exist = true;
+                } 
+            }
+            
+            if(!exist){
+
+                temp.setHashNext(doc);
+            }
+    
+        } else{
             table[index] = doc;
         }
     }
@@ -62,18 +93,50 @@ public class HashTable {
      * @param doc Documento correspondiente al usuario que nos interesa buscar
      */
     
+//    public void delete(User user, Document doc){
+//        
+//        int index = hashing(user, doc);
+//        
+//        if(table[index] != null){
+//            while(table[index] != doc){
+//                index++;
+//            }
+//            table[index] = null;
+//        } else{
+//            // No se hace nada ya que está null, es decir, no existe
+//        }
+//    }
+    
     public void delete(User user, Document doc){
-        
+    
         int index = hashing(user, doc);
         
-        if(table[index] != null){
-            while(table[index] != doc){
-                index++;
-            }
-            table[index] = null;
+        if(table[index] == null){
         } else{
-            // No se hace nada ya que está null, es decir, no existe
+            
+            Document temp = table[index];
+            Document aux;
+            
+            if(temp == doc){
+                
+                aux = temp.getHashNext();
+                temp.setHashNext(null);
+                table[index] = aux;
+                
+            } else{
+                
+                while(temp.getHashNext() != null){
+                    aux = temp;
+                    temp = temp.getHashNext();
+                    if(temp == doc){
+                        aux.setHashNext(temp.getHashNext());
+                        temp.setHashNext(null);
+                    } 
+                }
+            }       
+            
         }
+                            
     }
 
     /**
@@ -82,15 +145,43 @@ public class HashTable {
      * @param doc Documento correspondiente al usuario que nos interesa buscar
      * @return número correspondiente a la posición del documento en el binary heap, -1 si no se consiguió
      */  
-    public int getPos(User user, Document doc){
+    
+//    public int getPos(User user, Document doc){
+//        
+//        int index = hashing(user, doc);
+//        if(table[index] == null){
+//            return -1;
+//        }else{ // table[index] != null;
+//            while(table[index] != doc){ // Si no corresponde el documento guardado con el documento que está ahí, se procede a buscar ya que hubo una colisión
+//                index++;  
+//            } return table[index].getPosition();
+//        }
+//    }
+    
+        public int getPos(User user, Document doc){
         
         int index = hashing(user, doc);
-        if(table[index] == null){
-            return -1;
-        }else{ // table[index] != null;
-            while(table[index] != doc){ // Si no corresponde el documento guardado con el documento que está ahí, se procede a buscar ya que hubo una colisión
-                index++;  
-            } return table[index].getPosition();
+        Document temp = table[index];
+        boolean exist = false;
+        
+        if(temp != null){
+            if(temp.getHashNext() == null){
+                exist = true;
+            } else{
+                while(temp.getHashNext() != null && !exist){
+                    if(temp == doc){
+                        exist = true;
+                    } else{
+                        temp = temp.getHashNext();
+                    }
+                }
+            }
         }
-    }
+        
+        if(exist){
+            return doc.getPosition();
+        } else{
+            return -1;
+        }   
+    }     
 }
