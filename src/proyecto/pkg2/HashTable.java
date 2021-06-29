@@ -158,17 +158,17 @@ public class HashTable {
 //        }
 //    }
     
-        public int getPos(User user, Document doc){
+    public int getPos(User user, Document doc){
         
         int index = hashing(user, doc);
-        Document temp = table[index];
+        Document temp = table[index];   
         boolean exist = false;
         
         if(temp != null){
             if(temp.getHashNext() == null){
                 exist = true;
             } else{
-                while(temp.getHashNext() != null && !exist){
+                while(temp != null && !exist){
                     if(temp == doc){
                         exist = true;
                     } else{
@@ -183,5 +183,5 @@ public class HashTable {
         } else{
             return -1;
         }   
-    }     
+    }
 }
