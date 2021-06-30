@@ -57,7 +57,12 @@ public class csvFile {
         }
         return null;
     }    
-
+    
+    /**
+     * Función para escribir en un archivo csv los datos de la lista de usuarios registrados.
+     * @param path string con la dirección del archivo csv en el que se escribirán los datos.
+     * @param users lista de usuarios registrados usada en el proyecto.
+     */
     public static void writeCSV(String path, UserList users){
 
         try{

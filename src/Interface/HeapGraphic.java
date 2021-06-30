@@ -26,7 +26,7 @@ public class HeapGraphic extends JPanel{
         add(graphic, BorderLayout.CENTER);
         JFrame frame = new JFrame("Cola de impresión");
         frame.getContentPane().add(this, BorderLayout.CENTER);
-        frame.setSize(new Dimension(900, 600));
+        frame.setSize(new Dimension(900, 500));
         frame.setLocationRelativeTo(null);
         frame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
