@@ -93,7 +93,7 @@ public class beginningWindow extends javax.swing.JFrame {
 
         bChoose.setBackground(new java.awt.Color(255, 227, 238));
         bChoose.setText("Abrir");
-        bChoose.setToolTipText("Haz click aquí para escoger el archivo que deseas cargar");
+        bChoose.setToolTipText("Haz click aquí para escoger el archivo que deseas cargar.");
         bChoose.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 255), 2, true));
         bChoose.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,7 +106,7 @@ public class beginningWindow extends javax.swing.JFrame {
 
         bBegin.setBackground(new java.awt.Color(204, 255, 255));
         bBegin.setText("INICIAR");
-        bBegin.setToolTipText("Haz click aquí cuando estés listo para iniciar la simulación");
+        bBegin.setToolTipText("Haz click aquí cuando estés listo para iniciar la simulación.");
         bBegin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
         bBegin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

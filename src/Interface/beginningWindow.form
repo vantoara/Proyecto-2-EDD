@@ -146,7 +146,7 @@
                   <Color blue="ee" green="e3" red="ff" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Abrir"/>
-                <Property name="toolTipText" type="java.lang.String" value="Haz click aqu&#xed; para escoger el archivo que deseas cargar"/>
+                <Property name="toolTipText" type="java.lang.String" value="Haz click aqu&#xed; para escoger el archivo que deseas cargar."/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                     <LineBorder roundedCorners="true" thickness="2">
@@ -172,7 +172,7 @@
               <Color blue="ff" green="ff" red="cc" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="INICIAR"/>
-            <Property name="toolTipText" type="java.lang.String" value="Haz click aqu&#xed; cuando est&#xe9;s listo para iniciar la simulaci&#xf3;n"/>
+            <Property name="toolTipText" type="java.lang.String" value="Haz click aqu&#xed; cuando est&#xe9;s listo para iniciar la simulaci&#xf3;n."/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                 <LineBorder>

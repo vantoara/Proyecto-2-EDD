@@ -115,7 +115,7 @@
               <Color blue="ee" green="e3" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Agregar"/>
-            <Property name="toolTipText" type="java.lang.String" value="Haz click aqu&#xed; cuando est&#xe9;s listo para agregar un nuevo usuario"/>
+            <Property name="toolTipText" type="java.lang.String" value="Haz click aqu&#xed; cuando est&#xe9;s listo para agregar un nuevo usuario."/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                 <LineBorder>
@@ -160,7 +160,7 @@
               <Color blue="ee" green="e3" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Eliminar"/>
-            <Property name="toolTipText" type="java.lang.String" value="Haz click aqu&#xed; cuando est&#xe9;s listo para eliminar un usuario"/>
+            <Property name="toolTipText" type="java.lang.String" value="Haz click aqu&#xed; cuando est&#xe9;s listo para eliminar un usuario."/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                 <LineBorder>
@@ -201,7 +201,7 @@
               <Color blue="ee" green="e3" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Ver usuarios y sus documentos"/>
-            <Property name="toolTipText" type="java.lang.String" value="Haz click para ver todos los usuarios registrados y sus documentos"/>
+            <Property name="toolTipText" type="java.lang.String" value="Haz click para ver todos los usuarios registrados y sus documentos."/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                 <LineBorder>
@@ -343,6 +343,7 @@
                       <Color blue="ff" green="ff" red="cc" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Iniciar sesi&#xf3;n"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Haz click aqu&#xed; para iniciar sesi&#xf3;n con un usuario registrado."/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                         <LineBorder>
@@ -383,6 +384,7 @@
                 <Component class="javax.swing.JTextField" name="newDocNameTxt">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Ingresa el nombre del documento"/>
+                    <Property name="toolTipText" type="java.lang.String" value="El nombre de cada documento debe ser &#xfa;nico para cada usuario."/>
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -435,6 +437,7 @@
                       <Color blue="ee" green="e3" red="ff" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Crear"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Haz click aqu&#xed; para crear un nuevo documento."/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                         <LineBorder>
@@ -488,6 +491,7 @@
                       <Color blue="ee" green="e3" red="ff" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Eliminar"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Haz click aqu&#xed; para eliminar un documento que NO est&#xe1; en la cola."/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                         <LineBorder>
@@ -544,6 +548,7 @@
                       <Color blue="ee" green="e3" red="ff" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Eliminar"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Haz click aqu&#xed; para eliminar un documento de la cola de impresi&#xf3;n."/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                         <LineBorder>
@@ -597,6 +602,7 @@
                       <Color blue="ee" green="e3" red="ff" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Enviar a imprimir"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Haz click aqu&#xed; para enviar un documento a imprimir."/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                         <LineBorder>
@@ -637,6 +643,7 @@
                       <Color blue="ee" green="e3" red="ff" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Imprimir primer documento en la cola"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Haz click aqu&#xed; para liberar la impresora."/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                         <LineBorder>
@@ -677,6 +684,7 @@
                       <Color blue="ee" green="e3" red="ff" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Ver cola gr&#xe1;ficamente"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Haz click aqu&#xed; para ver la cola de prioridad con estructura de &#xe1;rbol."/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                         <LineBorder>
@@ -700,6 +708,7 @@
                       <Color blue="ee" green="e3" red="ff" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Ver como secuencia de registros"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Haz click aqu&#xed; para ver la cola de prioridad como una secuencia de registros."/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                         <LineBorder>

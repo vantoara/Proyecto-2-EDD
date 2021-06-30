@@ -10,9 +10,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import proyecto.pkg2.csvFile;
-import proyecto.pkg2.User;
-import proyecto.pkg2.Time;
-import proyecto.pkg2.Document;
 
 /**
  * Clase relacionada a la ventana con el menú de opciones 
@@ -156,7 +153,7 @@ public class menuWindow extends javax.swing.JFrame {
 
         bAddUser.setBackground(new java.awt.Color(255, 227, 238));
         bAddUser.setText("Agregar");
-        bAddUser.setToolTipText("Haz click aquí cuando estés listo para agregar un nuevo usuario");
+        bAddUser.setToolTipText("Haz click aquí cuando estés listo para agregar un nuevo usuario.");
         bAddUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
         bAddUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,7 +171,7 @@ public class menuWindow extends javax.swing.JFrame {
 
         bDeleteUser.setBackground(new java.awt.Color(255, 227, 238));
         bDeleteUser.setText("Eliminar");
-        bDeleteUser.setToolTipText("Haz click aquí cuando estés listo para eliminar un usuario");
+        bDeleteUser.setToolTipText("Haz click aquí cuando estés listo para eliminar un usuario.");
         bDeleteUser.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
         bDeleteUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -189,7 +186,7 @@ public class menuWindow extends javax.swing.JFrame {
 
         bSeeUsers.setBackground(new java.awt.Color(255, 227, 238));
         bSeeUsers.setText("Ver usuarios y sus documentos");
-        bSeeUsers.setToolTipText("Haz click para ver todos los usuarios registrados y sus documentos");
+        bSeeUsers.setToolTipText("Haz click para ver todos los usuarios registrados y sus documentos.");
         bSeeUsers.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
         bSeeUsers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -228,6 +225,7 @@ public class menuWindow extends javax.swing.JFrame {
 
         bLogIn.setBackground(new java.awt.Color(204, 255, 255));
         bLogIn.setText("Iniciar sesión");
+        bLogIn.setToolTipText("Haz click aquí para iniciar sesión con un usuario registrado.");
         bLogIn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
         bLogIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -243,6 +241,7 @@ public class menuWindow extends javax.swing.JFrame {
         jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 220, 40));
 
         newDocNameTxt.setText("Ingresa el nombre del documento");
+        newDocNameTxt.setToolTipText("El nombre de cada documento debe ser único para cada usuario.");
         jPanel4.add(newDocNameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 290, -1));
 
         sSize.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
@@ -257,6 +256,7 @@ public class menuWindow extends javax.swing.JFrame {
 
         bNewDoc.setBackground(new java.awt.Color(255, 227, 238));
         bNewDoc.setText("Crear");
+        bNewDoc.setToolTipText("Haz click aquí para crear un nuevo documento.");
         bNewDoc.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
         bNewDoc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -279,6 +279,7 @@ public class menuWindow extends javax.swing.JFrame {
 
         bDelDoc.setBackground(new java.awt.Color(255, 227, 238));
         bDelDoc.setText("Eliminar");
+        bDelDoc.setToolTipText("Haz click aquí para eliminar un documento que NO está en la cola.");
         bDelDoc.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
         bDelDoc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -303,6 +304,7 @@ public class menuWindow extends javax.swing.JFrame {
 
         bDelQueue.setBackground(new java.awt.Color(255, 227, 238));
         bDelQueue.setText("Eliminar");
+        bDelQueue.setToolTipText("Haz click aquí para eliminar un documento de la cola de impresión.");
         bDelQueue.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
         bDelQueue.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -325,6 +327,7 @@ public class menuWindow extends javax.swing.JFrame {
 
         bSendToQueue.setBackground(new java.awt.Color(255, 227, 238));
         bSendToQueue.setText("Enviar a imprimir");
+        bSendToQueue.setToolTipText("Haz click aquí para enviar un documento a imprimir.");
         bSendToQueue.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
         bSendToQueue.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -339,6 +342,7 @@ public class menuWindow extends javax.swing.JFrame {
 
         bPrint.setBackground(new java.awt.Color(255, 227, 238));
         bPrint.setText("Imprimir primer documento en la cola");
+        bPrint.setToolTipText("Haz click aquí para liberar la impresora.");
         bPrint.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
         bPrint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -353,6 +357,7 @@ public class menuWindow extends javax.swing.JFrame {
 
         bGraphic.setBackground(new java.awt.Color(255, 227, 238));
         bGraphic.setText("Ver cola gráficamente");
+        bGraphic.setToolTipText("Haz click aquí para ver la cola de prioridad con estructura de árbol.");
         bGraphic.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
         bGraphic.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -363,6 +368,7 @@ public class menuWindow extends javax.swing.JFrame {
 
         bSeq.setBackground(new java.awt.Color(255, 227, 238));
         bSeq.setText("Ver como secuencia de registros");
+        bSeq.setToolTipText("Haz click aquí para ver la cola de prioridad como una secuencia de registros.");
         bSeq.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
         bSeq.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -623,7 +629,7 @@ public class menuWindow extends javax.swing.JFrame {
             text.setLineWrap(false);
             JScrollPane scrollPane = new JScrollPane(text);  
             scrollPane.setPreferredSize(new Dimension(400, 400));
-            JOptionPane.showMessageDialog(null, scrollPane, "Cola de Impresión", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null, scrollPane, "Cola de impresión", JOptionPane.PLAIN_MESSAGE);
         }
     }//GEN-LAST:event_bSeqActionPerformed
     /*
@@ -631,7 +637,11 @@ public class menuWindow extends javax.swing.JFrame {
     * @param evt evento generado al presionar el botón
     */
     private void bGraphicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGraphicActionPerformed
-        // TODO TODAVÍA FALTA ESTOOOO
+        if (this.priorityQueue.isEmpty()){
+            JOptionPane.showMessageDialog(null, "La cola está vacía.");
+        }else{
+            HeapGraphic graphic = new HeapGraphic(this.priorityQueue);
+        }
     }//GEN-LAST:event_bGraphicActionPerformed
 
     /**
