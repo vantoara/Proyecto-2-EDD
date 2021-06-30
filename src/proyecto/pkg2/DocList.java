@@ -253,6 +253,7 @@ public class DocList {
      * @param user usuario que envió el documento a la cola
      * @param priority booleano que indica si el documento es de prioridad o no
      * @param timer timer que permite determinar el tiempo que debe aparecer en la etiqueta de tiempo del documento
+     * @param table hash table donde se guardará un registro del documento enviado a la cola
      */
     public void sendToQueue(BinaryHeap q, String name, User user, boolean priority, Time timer, HashTable table){
         Document doc = this.getNode(name);
