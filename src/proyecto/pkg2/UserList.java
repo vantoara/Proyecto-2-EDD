@@ -240,4 +240,24 @@ public class UserList {
         }
         return users;
     }
+    
+    /**
+     * Método para conseguir el usuario que creó un documento específico.
+     * @param doc documento creado por un usuario, el cual se busca.
+     * @return usuario que creó el usuario o null si no se consiguió.
+     */
+    public User findUserOfDoc(Document doc){
+        User pAux = pFirst;
+        Document auxDoc;
+        while (pAux!=null){
+            auxDoc = pAux.getDocs().getNode(doc.getName());
+            if (auxDoc != null){
+                if (auxDoc.equals(doc)){
+                    return pAux;
+                }
+            }
+            pAux = pAux.getpNext();
+        }
+        return null;
+    }
 }

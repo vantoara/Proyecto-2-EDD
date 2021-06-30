@@ -254,13 +254,13 @@ public class DocList {
      * @param priority booleano que indica si el documento es de prioridad o no
      * @param timer timer que permite determinar el tiempo que debe aparecer en la etiqueta de tiempo del documento
      */
-    public void sendToQueue(BinaryHeap q, String name, User user, boolean priority, Time timer){
+    public void sendToQueue(BinaryHeap q, String name, User user, boolean priority, Time timer, HashTable table){
         Document doc = this.getNode(name);
         if (doc == null){
             JOptionPane.showMessageDialog(null, "El documento no existe. Valide sus datos.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }else if (!doc.isInQueue()){
             timer.setTime(priority, user, doc);
-            //FALTA LO DE ENVIAR AL HASHTABLE!!!!!!!!!!
+            table.add(user, doc);
             q.insert(doc);
             JOptionPane.showMessageDialog(null, "El documento \""+name+"\" fue enviado a la cola de impresión.");
         }else{

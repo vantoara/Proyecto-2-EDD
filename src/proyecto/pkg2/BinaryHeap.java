@@ -296,18 +296,6 @@ public class BinaryHeap {
         heapUp(n);
         
     }
-    
-    /**
-     * Método para mostrar el montículo en forma de preorden
-     * @param root, nodo desde el cual se comienza el preorder, se irá actualizando
-     */
-    public void preorder(Document root){
-        if(root != null){
-            System.out.println(root.getValue());
-            preorder(root.getLeftSon());
-            preorder(root.getRightSon());
-        }
-    }
 
     /**
      * Método para reorganizar el montículo cuando es necesario
@@ -379,11 +367,9 @@ public class BinaryHeap {
             }
             
             size--;  
-            JOptionPane.showMessageDialog(null, "Operación realizada exitosamente.");
             return min;
             
         }else{
-            JOptionPane.showMessageDialog(null, "La cola está vacía.", "ERROR", JOptionPane.ERROR_MESSAGE);
             return null;
         } 
     }
@@ -402,7 +388,7 @@ public class BinaryHeap {
             
         } else {
             if(position < 1 || position > getSize()){
-                JOptionPane.showMessageDialog(null, "Posición ingresada es inválida.");
+                JOptionPane.showMessageDialog(null, "El documento a eliminar no existe.");
                 
             } else if(position == 1){
                 delete = deleteMin();
@@ -422,4 +408,39 @@ public class BinaryHeap {
         }     
         return delete;
     }
+
+    /**
+     * Método para mostrar la cola como una secuencia de registros.
+     * @return string con la secuencia de registros o diciendo que la cola de prioridad está vacía si es el caso.
+     * @author Liliana Nóbrega
+     */
+    public String printQueue(){
+        if (this.isEmpty()){
+            return null;
+        }else{
+            return this.printQueue(1, "");
+        }
+    }
+    
+    /**
+     * Método para mostrar la cola como una secuencia de registros. Agrega a un String cada documento guardado en la cola, en el orden de la cola.
+     * @param strQueue string al que se le agrega la información de los documentos de la cola
+     * @param counter entero que representa la posición del elemento de la cola en la cola.
+     * @return string con la secuencia de registro.
+     * @author Guillermo Sanfuentes
+     */
+    public String printQueue(int counter, String strQueue){
+        if (!isEmpty()){
+            
+            Document aux = deleteMin();
+            aux.setInQueue(true);
+            strQueue += "------"+counter+"-------------\n"+aux.showAttributes()+"\n";
+            strQueue = printQueue(counter+1, strQueue);
+            this.insert(aux);
+
+        }
+        
+        return strQueue;
+    }
+    
 }

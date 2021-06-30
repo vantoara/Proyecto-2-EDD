@@ -5,8 +5,6 @@
  */
 package proyecto.pkg2;
 
-import javax.swing.JOptionPane;
-
 /**
  * Clase asociada a los documentos a imprimir.
  * @author Liliana Nóbrega
@@ -35,7 +33,7 @@ public class Document {
         this.size = size;
         this.type = type;
         this.inQueue = false;
-        this.father = this.leftSon = this.rightSon = this.pNext = null;
+        this.father = this.leftSon = this.rightSon = this.pNext = this.hashNext = null;
         this.position = -1;
         this.value = -1;
     }

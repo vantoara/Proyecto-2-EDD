@@ -12,6 +12,7 @@ import javax.swing.JTextArea;
 import proyecto.pkg2.csvFile;
 import proyecto.pkg2.User;
 import proyecto.pkg2.Time;
+import proyecto.pkg2.Document;
 
 /**
  * Clase relacionada a la ventana con el menú de opciones 
@@ -24,6 +25,7 @@ public class menuWindow extends javax.swing.JFrame {
     proyecto.pkg2.User currentUser;
     proyecto.pkg2.BinaryHeap priorityQueue;
     public static proyecto.pkg2.Time timer;    
+    proyecto.pkg2.HashTable hashTable;
     
     /**
      * Constructor de la clase menuWindow 
@@ -35,6 +37,7 @@ public class menuWindow extends javax.swing.JFrame {
         this.priorityQueue = new proyecto.pkg2.BinaryHeap();
         this.path = path;
         this.timer = timer;
+        this.hashTable = new proyecto.pkg2.HashTable();
         if (users == null){
             this.users = new proyecto.pkg2.UserList();
         }else{
@@ -351,11 +354,21 @@ public class menuWindow extends javax.swing.JFrame {
         bGraphic.setBackground(new java.awt.Color(255, 227, 238));
         bGraphic.setText("Ver cola gráficamente");
         bGraphic.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
+        bGraphic.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bGraphicActionPerformed(evt);
+            }
+        });
         jPanel4.add(bGraphic, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 730, 210, 30));
 
         bSeq.setBackground(new java.awt.Color(255, 227, 238));
         bSeq.setText("Ver como secuencia de registros");
         bSeq.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 255)));
+        bSeq.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bSeqActionPerformed(evt);
+            }
+        });
         jPanel4.add(bSeq, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 690, 210, 30));
         jPanel4.add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 290, 10));
         jPanel4.add(jSeparator12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 290, 10));
@@ -404,6 +417,7 @@ public class menuWindow extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Usuario agregado con éxito.");
             }
         }
+        newNameTxt.setText("");
     }//GEN-LAST:event_bAddUserActionPerformed
     /*
     * Método que permite eliminar un usuario al presionar el botón de eliminar usuario
@@ -413,10 +427,14 @@ public class menuWindow extends javax.swing.JFrame {
         if (deleteUserNameTxt.getText().isBlank() || deleteUserNameTxt.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Antes de eliminar un usuario, debes ingresar su nombre de usuario.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }else{
+            if (this.currentUser != null && deleteUserNameTxt.getText().equals(this.currentUser.getName())){
+                this.currentUser = null;
+                currentUserLabel.setText("");
+            }
             this.users.deleteUser(deleteUserNameTxt.getText());
         }
+        deleteUserNameTxt.setText("");
     }//GEN-LAST:event_bDeleteUserActionPerformed
-    
     /*
     * Método que permite ver los usuarios registrados y sus documentos al presionar el botón de ver usuarios
     * @param evt evento generado al presionar el botón
@@ -477,7 +495,7 @@ public class menuWindow extends javax.swing.JFrame {
     private void bSendToQueueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSendToQueueActionPerformed
         if (this.currentUser != null){
             if (sendToQueueTxt.getText().isEmpty() || sendToQueueTxt.getText().isBlank()){
-                JOptionPane.showMessageDialog(null, "Antes de eliminar un documento de la cola de impresión, debes indicar su nombre.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Antes de agregar un documento a la cola de impresión, debes indicar su nombre.", "ERROR", JOptionPane.ERROR_MESSAGE);
             }else{
                 String [] options = {"Sí", "No"};
                 int answer = JOptionPane.showOptionDialog(null, "¿El documento es prioritario?", "Prioridad", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
@@ -485,11 +503,12 @@ public class menuWindow extends javax.swing.JFrame {
                 if (answer == 0){
                     priority = true;
                 }
-                currentUser.getDocs().sendToQueue(priorityQueue, sendToQueueTxt.getText(), currentUser, priority, timer);
+                currentUser.getDocs().sendToQueue(priorityQueue, sendToQueueTxt.getText(), currentUser, priority, timer, hashTable);
             }        
         }else{
-            JOptionPane.showMessageDialog(null, "Antes de eliminar un documento de la cola de impresión, debes iniciar sesión.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Antes de agregar un documento de la cola de impresión, debes iniciar sesión.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
+        sendToQueueTxt.setText("");
     }//GEN-LAST:event_bSendToQueueActionPerformed
     /*
     * Método que permite al usuario iniciar sesión al presionar el botón de iniciar sesión
@@ -509,6 +528,7 @@ public class menuWindow extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Ingresaste un nombre de usuario inválido. Intenta otra vez", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
         }
+        userTxt.setText("");
     }//GEN-LAST:event_bLogInActionPerformed
     /*
     * Método que permite crear un nuevo documento al presionar el botón de crear 
@@ -524,6 +544,7 @@ public class menuWindow extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(null, "Antes de crear un nuevo documento, debes iniciar sesión.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
+        newDocNameTxt.setText("");
     }//GEN-LAST:event_bNewDocActionPerformed
     /*
     * Método que permite eliminar un documento que no esté en la cola de impresión al presionar el botón de eliminar
@@ -539,23 +560,79 @@ public class menuWindow extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(null, "Antes de eliminar un documento, debes iniciar sesión.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
+        delDocNameTxt.setText("");
     }//GEN-LAST:event_bDelDocActionPerformed
     /*
     * Método que permite eliminar un documento de la cola de impresión al presionar el botón de eliminar (de la cola de impresión)
     * @param evt evento generado al presionar el botón
     */
     private void bDelQueueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDelQueueActionPerformed
-        // TODO 
         if (this.currentUser != null){
-        
+            if (delQueueNameTxt.getText().isBlank() || delQueueNameTxt.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "Para eliminar un documento de la cola, debes ingresar su nombre.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }else{
+                proyecto.pkg2.Document doc = this.currentUser.getDocs().getNode(delQueueNameTxt.getText());
+                if (doc != null){
+                    if (doc.isInQueue()){
+                        int position = hashTable.getPos(this.currentUser, doc);
+                        proyecto.pkg2.Document aux = priorityQueue.deletion(position);
+                        if (aux != null){ //si retorna algo distinto de null, es porque se logró borrar el documento
+                            JOptionPane.showMessageDialog(null, "El documento \""+delQueueNameTxt.getText()+"\" fue eliminado de la cola.");
+                            hashTable.delete(this.currentUser, doc);
+                        }else{
+                            JOptionPane.showMessageDialog(null, "La cola está vacía.", "Aviso", JOptionPane.WARNING_MESSAGE);
+                        }
+                    }else{
+                        JOptionPane.showMessageDialog(null, "El documento no está en la cola de impresión.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+                }else{
+                    JOptionPane.showMessageDialog(null, "El documento no existe en la lista de documentos del usuario.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+            }
         }else{
             JOptionPane.showMessageDialog(null, "Antes de eliminar un documento de la cola de impresión, debes iniciar sesión.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
+        delQueueNameTxt.setText("");
     }//GEN-LAST:event_bDelQueueActionPerformed
-
+    /*
+    * Método que permite imprimir el primer documento de la cola de impresión al presionar el botón de liberar impresora
+    * @param evt evento generado al presionar el botón
+    */
     private void bPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPrintActionPerformed
-        priorityQueue.deleteMin();        
+        proyecto.pkg2.Document deleted = priorityQueue.deleteMin();
+        if (deleted != null){
+            JOptionPane.showMessageDialog(null, "El documento \""+deleted.getName()+"\" fue impreso exitosamente.");
+            proyecto.pkg2.User user = this.users.findUserOfDoc(deleted);
+            if (user != null){
+                hashTable.delete(user, deleted);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "La cola está vacía.", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_bPrintActionPerformed
+    /*
+    * Método que permite visualizar la cola de impresión como una secuencia de registros al presionar el botón de ver como secuencia de registros
+    * @param evt evento generado al presionar el botón
+    */
+    private void bSeqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSeqActionPerformed
+        String q = this.priorityQueue.printQueue();
+        if (q == null){
+            JOptionPane.showMessageDialog(null, "La cola está vacía.") ;
+        }else{
+            JTextArea text = new JTextArea(q);
+            text.setLineWrap(false);
+            JScrollPane scrollPane = new JScrollPane(text);  
+            scrollPane.setPreferredSize(new Dimension(400, 400));
+            JOptionPane.showMessageDialog(null, scrollPane, "Cola de Impresión", JOptionPane.PLAIN_MESSAGE);
+        }
+    }//GEN-LAST:event_bSeqActionPerformed
+    /*
+    * Método que permite visualizar la cola de impresión gráficamente al presionar el botón de ver cola gráficamente
+    * @param evt evento generado al presionar el botón
+    */
+    private void bGraphicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGraphicActionPerformed
+        // TODO TODAVÍA FALTA ESTOOOO
+    }//GEN-LAST:event_bGraphicActionPerformed
 
     /**
      * @param args the command line arguments

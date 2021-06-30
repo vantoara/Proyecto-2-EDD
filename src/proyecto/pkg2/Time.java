@@ -44,7 +44,7 @@ public class Time {
                     break;
             }
         }
-        System.out.println(doc.getName()+": "+now);
+
         doc.setValue(now);
     }
     
